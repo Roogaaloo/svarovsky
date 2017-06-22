@@ -5,48 +5,46 @@
     <section>
         <h1>{{ $heading }}</h1>
 
-        <form action="{{ route('admin.blog.update',[$article->id]) }}" method="post" enctype="multipart/form-data">
+        <form action="{{ route('admin.blog.store') }}" method="post" enctype="multipart/form-data">
             {!! csrf_field() !!}
 
             <div class="form-group">
                 <label>Název</label>
-                <input class="form-control" type="text" name="title" value="{{ $article->title }}">
+                <input class="form-control" type="text" name="title" required>
             </div>
             <div class="form-group">
                 <label>URL</label>
-                <input class="form-control" type="text" name="href" value="{{ $article->href }}">
+                <input class="form-control" type="text" name="href" required>
             </div>
             <div class="form-group">
                 <label>Perex</label>
-                <input class="form-control" type="text" name="perex" value="{{ $article->perex }}">
+                <input class="form-control" type="text" name="perex" required>
             </div>
             <div class="form-group">
                 <label for="text">Text</label>
-                <textarea id="text" name="text">{{ $article->text }}</textarea>
+                <textarea id="text" name="text"></textarea>
                 @ckeditor('text', ['height' => 200])
             </div>
-
             <div class="form-group">
                 <label>Kategorie</label>
-                <input class="form-control" type="text" name="category"  value="{{ $article->category }}" required>
+                <input class="form-control" type="text" name="category" required>
             </div>
 
-            {{--<div class="form-group">
+           {{-- <div class="form-group">
                 <label>Obrázek</label>
                 <input class="form-control" type="file" name="image">
-                @if($article->image)<img src="{{ $article->image }}" width="200px">@else Fotka nepřiřazena @endif
             </div>--}}
 
             <div class="form-group">
-                <input type="checkbox" name="status" value="1" @if($article->status) checked @endif>
+                <input type="checkbox" name="status" value="1">
                 <label>Status</label>
             </div>
             <div class="form-group">
-                <input type="checkbox" name="hp_status" value="1" @if($article->hp_status) checked @endif>
+                <input type="checkbox" name="hp_status" value="1">
                 <label>Zobrazit na homepage</label>
             </div>
             <div class="form-group">
-                <input type="submit" name="submit" value="Upravit" class="btn">
+                <input type="submit" name="submit" value="Vytvořit" class="btn">
                 <a href="{{ route('admin.blog.list') }}" class="btn">Zpět</a>
             </div>
         </form>

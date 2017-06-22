@@ -29,6 +29,9 @@ body{
 .alert-success{
     background: #87bc26;
 }
+.alert-error{
+    background: #f31e1e;
+}
 .close {
     position: absolute;
     top: 5px;
@@ -286,6 +289,10 @@ span.glyphicon:hover{
 .hp-article:hover span.glyphicon{
     color: #87bc26;
 }
+#articles .col-sm-4{
+    margin-bottom: 30px;
+    min-height: 300px;
+}
 .blog-icon{
     display:inline-block;
     float: left;
@@ -295,6 +302,21 @@ span.glyphicon:hover{
 .reference-card{
     padding: 10px 20px;
     min-height: 200px;
+    position: relative;
+}
+.reference-date{
+    position: absolute;
+    right: 10px;
+    top: 5px;
+    color: #888;
+}
+.tparrows{
+    margin-top: 80px;
+    background: #87bc26;
+    transition: 0.3s ease;
+}
+.tparrows:hover{
+    background: #87bc26;
 }
 .reference-add-heading h2{
     font-size: 20px;
@@ -304,16 +326,16 @@ span.glyphicon:hover{
 textarea{
     max-width: 100%;
 }
-.reference-card:first-child {
+.reference-row .reference-card:nth-child(1) {
     background: #fefefe;
 }
-.reference-card:last-child {
+.reference-row .reference-card:nth-child(2) {
     background: #eee;
 }
-.reference-row:nth-child(2n+2) .reference-card:first-child{
+.reference-row:nth-child(2n+2) .reference-card:nth-child(1){
      background: #eee;
 }
-.reference-row:nth-child(2n+2) .reference-card:last-child{
+.reference-row:nth-child(2n+2) .reference-card:nth-child(2){
     background: #fefefe;
 }
 .reference-icon{
@@ -477,6 +499,9 @@ footer>.container{
 
 /*Admin*/
 
+#admin{
+    background: #111;
+}
 #admin h1{
     font-size:30px;
     font-weight: 500;
@@ -494,7 +519,7 @@ footer>.container{
 }
 .admin-menu{
     padding-top: 30px;
-    background: #000;
+    background: #111;
 }
 .admin-menu h2{
     color: #fff;
@@ -509,22 +534,22 @@ footer>.container{
     display: block;
 }
 .admin-menu ul li.active a{
-    color: #000;
+    color: #111;
     background: #87bc26;
 }
 .admin-menu ul li a{
     padding: 10px 10px;
-    background: #000;
+    background: #111;
     color: #fff;
     display: block;
     font-weight: 500;
 }
 .admin-menu ul li a:hover{
-    color: #000;
+    color: #111;
     background: #87bc26;
 }
 .header-admin{
-    background: #000;
+    background: #111;
     color: #fff;
     padding: 18px 0px;
 }
@@ -538,3 +563,14 @@ footer>.container{
 .header-admin a:hover{
     color: #87bc26;
 }
+.btn-create{
+    margin-top: -10px;
+    position: relative;
+    top: -66px;
+    padding: 8px 30px;
+}
+.admin-content{
+    min-height: 1000px;
+    background: #f1f1f1;
+}
+

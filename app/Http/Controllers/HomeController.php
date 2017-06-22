@@ -9,6 +9,7 @@ use App\HomeText;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\MeetingAdmin;
 use App\Mail\MeetingUser;
+use Illuminate\Support\Facades\Validator;
 
 class HomeController extends Controller
 {
@@ -37,6 +38,19 @@ class HomeController extends Controller
 
     public function addMeeting(Request $request)
     {
+
+
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255',
+            'text' => 'required|max:255',
+        ]);
+
+        if($validator->fails()){
+            $request->session()->flash('error', "Prosím vyplňte požadovaná pole.");
+
+            return back()->withInput();
+        }
 
 
         DB::table('meetings')->insert([

@@ -4,40 +4,38 @@
 
 @if($references)
     <section>
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-12">
-                    <h1>Blog</h1>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-12">
+
+                    <h1>Reference</h1>
+
                     <table class="table table-striped">
                         <thead style="font-weight: 600;">
                             <tr>
-                                <td>ID</td>
                                 <td>Jméno</td>
-                                <td>Krátký popis</td>
+                                <td>Text</td>
                                 <td>Datum vytvoření</td>
-                                <td>Akce</td>
+                                <td class="text-center">Status</td>
+                                <td class="text-center">HP Status</td>
+                                <td class="text-right">Akce</td>
                             </tr>
                         </thead>
                         <tbody>
                         @foreach($references as $reference)
                             <tr>
-                                <td>{{ $reference->id }}</td>
-                                <td>{{ $reference->title }}</td>
-                                <td>{{ $reference->perex }}</td>
+                                <td>{{ $reference->name }}</td>
+                                <td>{{ substr($reference->text, 0, 50) }}...</td>
                                 <td>{{ $reference->created_at }}</td>
-                                <td><a href="{{ route('admin.blog.edit', $reference->id) }}"><i class="fa fa-pencil"></i> Upravit</a></td>
+                                <td class="text-center">{{ $reference->status }}</td>
+                                <td class="text-center">{{ $reference->hp_status }}</td>
+                                <td class="text-right">
+                                    <a href="{{ route('admin.reference.edit', $reference->id) }}" title="Upravit"><i class="fa fa-pencil"></i></a>
+                                    <a href="{{ route('admin.reference.delete', $reference->id) }}" title="Smazat"><i class="fa fa-times"></i></a>
+                                </td>
                             </tr>
                         @endforeach
                         </tbody>
                     </table>
 
-                </div>
-            </div>
-        </div>
+
     </section>
 @endif
 

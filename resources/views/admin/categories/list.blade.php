@@ -7,7 +7,7 @@
 
 
                     <h1>{{ $heading }}</h1>
-
+                    <a href="{{ route('admin.categories.create') }}" class="btn pull-right btn-create">Vytvořit produkt</a>
 
                     <table class="table table-striped">
                         <thead style="font-weight: 600;">
@@ -15,8 +15,10 @@
                                 <td>ID</td>
                                 <td>Jméno</td>
                                 <td>Krátký popis</td>
-                                <td>Datum vytvoření</td>
-                                <td>Akce</td>
+                                <td class="text-center">Status</td>
+                                <td class="text-center">HP Status</td>
+
+                                <td class="text-right">Akce</td>
                             </tr>
                         </thead>
                         <tbody>
@@ -25,8 +27,13 @@
                                 <td>{{ $category->id }}</td>
                                 <td>{{ $category->name }}</td>
                                 <td>{{ substr($category->perex, 0,45) }}...</td>
-                                <td>{{ $category->created_at }}</td>
-                                <td><a href="{{ route('admin.categories.edit', $category->id) }}"><i class="fa fa-pencil"></i> Upravit</a></td>
+                                <td class="text-center">{{ $category->status }}</td>
+                                <td class="text-center">{{ $category->hp_status }}</td>
+
+                                <td class="text-right">
+                                    <a href="{{ route('admin.categories.edit', $category->id) }}" title="Upravit"><i class="fa fa-pencil"></i></a>
+                                    <a href="{{ route('admin.categories.delete', $category->id) }}" title="Smazat"><i class="fa fa-times"></i></a>
+                                </td>
                             </tr>
                         @endforeach
                         </tbody>

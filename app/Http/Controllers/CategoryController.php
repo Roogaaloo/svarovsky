@@ -39,6 +39,33 @@ class CategoryController extends Controller
 
         return view('admin.categories.edit', compact('category', 'heading'));
     }
+
+    public function create(){
+
+        $heading = 'Vytvořit produkt';
+
+        return view('admin.categories.create', compact('heading'));
+    }
+
+    public function store(Request $request){
+
+
+
+        DB::table('categories')
+            ->insert([
+                'name' => $request->title,
+                'description' => $request->text,
+                'perex' => $request->perex,
+                'href' => $request->href,
+                'status' => $request->status??0,
+                'hp_status' => $request->hp_status??0,
+            ]);
+
+        $request->session()->flash('success', "Produkt byl vytvořen!");
+
+        return Redirect::action('CategoryController@indexAdmin');
+    }
+
     public function update(Request $request, $id){
 
 
@@ -48,12 +75,24 @@ class CategoryController extends Controller
             ->update([
                 'name' => $request->title,
                 'description' => $request->text,
+                'perex' => $request->perex,
                 'href' => $request->href,
                 'status' => $request->status??0,
                 'hp_status' => $request->hp_status??0,
             ]);
 
         $request->session()->flash('success', "Produkt byl upraven!");
+
+        return Redirect::action('CategoryController@indexAdmin');
+    }
+
+    public function destroy(Request $request, $id)
+    {
+        DB::table('categories')
+            ->where('id', $id)
+            ->delete();
+
+        $request->session()->flash('success', "Produkt byl smazán!");
 
         return Redirect::action('CategoryController@indexAdmin');
     }

@@ -43,6 +43,22 @@
     </div>
 @endif
 
+@if (Session::has('error'))
+    <div class="alert alert-error">
+        {{ Session::get('error') }}
+    </div>
+    <style>
+        input[value=""]{
+            border-color: #f31e1e;
+        }
+        textarea:empty{
+            border-color: #f31e1e;
+        }
+    </style>
+@endif
+
+
+
 @include('partitials.meeting')
 
 <div class="page-loader">
@@ -82,7 +98,7 @@
             minHeight: 200,
             responsiveLevels: [1240, 1025, 778, 480],
             navigation: {
-                arrows: {enable: false}
+                arrows: {enable: true}
             },
             gridwidth: 1920,
             gridheight: [800, 800, 1100, 1800],

@@ -55,16 +55,28 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
         Route::get('', ['as' => 'admin.categories.list', 'uses' => 'CategoryController@indexAdmin']);
         Route::get('{id}/edit', ['as' => 'admin.categories.edit', 'uses' => 'CategoryController@edit']);
         Route::post('{id}/update', ['as' => 'admin.categories.update', 'uses' => 'CategoryController@update']);
+        Route::get('{id}/delete', ['as' => 'admin.categories.delete', 'uses' => 'CategoryController@destroy']);
+        Route::get('create', ['as' => 'admin.categories.create', 'uses' => 'CategoryController@create']);
+        Route::post('store', ['as' => 'admin.categories.store', 'uses' => 'CategoryController@store']);
     });
 
     Route::group(['prefix' => 'blog'], function () {
         Route::get('', ['as' => 'admin.blog.list', 'uses' => 'BlogController@indexAdmin']);
         Route::get('{id}/edit', ['as' => 'admin.blog.edit', 'uses' => 'BlogController@edit']);
         Route::post('{id}/update', ['as' => 'admin.blog.update', 'uses' => 'BlogController@update']);
+        Route::get('{id}/delete', ['as' => 'admin.blog.delete', 'uses' => 'BlogController@destroy']);
+        Route::get('create', ['as' => 'admin.blog.create', 'uses' => 'BlogController@create']);
+        Route::post('store', ['as' => 'admin.blog.store', 'uses' => 'BlogController@store']);
     });
 
-    Route::get('reference', ['as' => 'admin.reference.list', 'uses' => 'ReferenceController@indexAdmin']);
-    Route::get('reference/{id}/edit', ['as' => 'admin.reference.edit', 'uses' => 'ReferenceController@edit']);
+    Route::group(['prefix' => 'reference'], function () {
+        Route::get('', ['as' => 'admin.reference.list', 'uses' => 'ReferenceController@indexAdmin']);
+        Route::get('/{id}/edit', ['as' => 'admin.reference.edit', 'uses' => 'ReferenceController@edit']);
+        Route::post('{id}/update', ['as' => 'admin.reference.update', 'uses' => 'ReferenceController@update']);
+        Route::get('{id}/delete', ['as' => 'admin.reference.delete', 'uses' => 'ReferenceController@destroy']);
+    });
+
+
 
 
 });

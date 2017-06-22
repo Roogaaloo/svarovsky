@@ -26,6 +26,13 @@
         main{
             padding-top: 0px;
         }
+        footer>.container{
+            border-top: 1px solid #f1f1f1;
+            margin:0px;
+            padding-left: 20px;
+            padding-right: 20px;
+            width: 100%;
+        }
     </style>
 
     <title>Admin</title>

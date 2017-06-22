@@ -5,19 +5,20 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Storage;
 
 class BlogController extends Controller
 {
     public function index()
     {
-        $articles = DB::table('articles')->where('status', 1)->orderBy('created_at', 'asc')->get();
+        $articles = DB::table('articles')->where('status', 1)->orderBy('created_at', 'desc')->get();
 
         return view('blog.list', compact('articles'));
     }
 
     public function indexAdmin()
     {
-        $articles = DB::table('articles')->where('status', 1)->orderBy('created_at', 'asc')->get();
+        $articles = DB::table('articles')->where('status', 1)->orderBy('created_at', 'desc')->get();
 
         return view('admin.blog.list', compact('articles'));
     }
@@ -38,12 +39,22 @@ class BlogController extends Controller
             ->where('id', $id)
             ->update([
                 'title' => $request->title,
-                'image' => $request->image,
                 'text' => $request->text,
+                'perex' => $request->perex,
+                'category' => $request->category,
                 'href' => $request->href,
                 'status' => $request->status??0,
                 'hp_status' => $request->hp_status??0,
             ]);
+
+        if ($request->file('image')) {
+            DB::table('articles')
+                ->where('id', $id)
+                ->update([
+                    'image' => '/img/articles/' . $request->image->getClientOriginalName(),
+                ]);
+            $request->file('image')->move('img/articles', $request->image->getClientOriginalName());
+        }
 
         $request->session()->flash('success', "Článek byl upraven!");
 
@@ -55,20 +66,39 @@ class BlogController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
+    public function create(){
+
+        $heading = 'Vytvořit článek';
+
+        return view('admin.blog.create', compact('heading'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
+    public function store(Request $request){
+        DB::table('articles')
+            ->insert([
+                'title' => $request->title,
+
+                'text' => $request->text,
+                'perex' => $request->perex,
+                'category' => $request->category,
+                'href' => $request->href,
+                'status' => $request->status??0,
+                'hp_status' => $request->hp_status??0,
+                'created_at' => date("Y-m-d H:i:s"),
+            ]);
+
+        if ($request->file('image')) {
+            DB::table('articles')
+                ->insert([
+                    'image' => '/img/articles/' . $request->image->getClientOriginalName(),
+                ]);
+            $request->file('image')->move('img/articles', $request->image->getClientOriginalName());
+        }
+
+
+        $request->session()->flash('success', "Článek byl vytvořen!");
+
+        return Redirect::action('BlogController@indexAdmin');
     }
 
     /**
@@ -109,8 +139,14 @@ class BlogController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        //
+        DB::table('articles')
+            ->where('id', $id)
+            ->delete();
+
+        $request->session()->flash('success', "Článek byl smazán!");
+
+        return Redirect::action('BlogController@indexAdmin');
     }
 }

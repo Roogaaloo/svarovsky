@@ -6,6 +6,9 @@ use App\Mail\Reference;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Validator;
+
 
 class ReferenceController extends Controller
 {
@@ -14,6 +17,46 @@ class ReferenceController extends Controller
         $references = DB::table('references')->where('status', 1)->orderBy('created_at', 'desc')->get();
 
         return view('reference.list', compact('references'));
+    }
+
+    public function indexAdmin()
+    {
+        $references = DB::table('references')->orderBy('created_at', 'desc')->get();
+
+        return view('admin.reference.list', compact('references'));
+    }
+
+
+    public function edit($id)
+    {
+        $heading = 'Upravit referenci';
+
+        $reference = DB::table('references')->where('id', $id)->first();
+
+        return view('admin.reference.edit', compact('reference', 'heading'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        DB::table('references')
+            ->where('id', $id)
+            ->update([
+                'text' => $request->text,
+                'date' => $request->date,
+                'status' => $request->status??0,
+                'hp_status' => $request->hp_status??0,
+            ]);
+
+        $request->session()->flash('success', "Reference byla upravena!");
+
+        return Redirect::action('ReferenceController@indexAdmin');
     }
 
     /**
@@ -34,6 +77,21 @@ class ReferenceController extends Controller
      */
     public function store(Request $request)
     {
+
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255',
+            'text' => 'required|max:255',
+        ]);
+
+        if($validator->fails()){
+            $request->session()->flash('error', "Prosím vyplňte požadovaná pole.");
+
+            return back()->withInput();
+        }
+
+
+
 
 
         DB::table('references')->insert([
@@ -69,22 +127,7 @@ class ReferenceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        //
-    }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
 
     /**
      * Remove the specified resource from storage.
@@ -92,8 +135,14 @@ class ReferenceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        //
+        DB::table('references')
+            ->where('id', $id)
+            ->delete();
+
+        $request->session()->flash('success', "Reference byla smazána!");
+
+        return Redirect::action('ReferenceController@indexAdmin');
     }
 }

@@ -21,8 +21,8 @@ class CreateArticlesTable extends Migration
             $table->text('text');
             $table->text('image');
             $table->integer('category');
-            $table->integer('related');
-            $table->integer('views');
+            $table->integer('related')->default(0);
+            $table->integer('views')->default(0);
             $table->integer('status');
             $table->integer('hp_status');
             $table->timestamps();

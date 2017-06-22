@@ -12,37 +12,42 @@
                         <h1>Reference</h1>
                     </div>
                 </div>
+                <div class="row reference-row">
+                    <div class="col-sm-6 reference-card">
+                        <form action="{{ route('reference.addComment') }}" method="post">
+
+                            {!! csrf_field() !!}
+                            <div class="row">
+                                <div class="col-sm-12 reference-add-heading">
+                                    <h2>Přidat recenzi</h2>
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    <input class="form-control" type="text" name="name" value="{{ old('name') }}" placeholder="Jméno a příjmení">
+                                </div>
+                                <div class="form-group col-sm-6">
+                                    <input class="form-control" type="email" name="email" value="{{ old('email') }}" placeholder="E-mail">
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-8">
+                                        <textarea class="form-control" name="text" placeholder="Recenze">{{ old('text') }}</textarea>
+                                    </div>
+                                    <div class="col-sm-4 text-right">
+                                        <input type="submit" name="submit" value="Potvrdit" class="btn" style="margin-top: 5px;">
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        <div class="clearfix">
+                            <small>Všechna pole jsou povinná. E-mail nebude zveřejněn.</small>
+                        </div>
+                    </div>
+
                 <?php $i = 0; ?>
 
                 @foreach($references as $reference)
-                    @if($i == 0 or $i%2 == 0)<div class="row reference-row">@endif
-                        @if($i == 0)
+
                             <div class="col-sm-6 reference-card">
-                               <form action="{{ route('reference.addComment') }}" method="post">
-                                    {!! csrf_field() !!}
-                                    <div class="row">
-                                        <div class="col-sm-12 reference-add-heading">
-                                            <h2>Přidat recenzi</h2>
-                                        </div>
-                                        <div class="form-group col-sm-6">
-                                            <input class="form-control" type="text" name="name" placeholder="Jméno a příjmení">
-                                        </div>
-                                        <div class="form-group col-sm-6">
-                                            <input class="form-control" type="email" name="email" placeholder="E-mail">
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="col-sm-8">
-                                                <textarea class="form-control" name="text" placeholder="Recenze"></textarea>
-                                            </div>
-                                            <div class="col-sm-4 text-right">
-                                                <input type="submit" name="submit" value="Potvrdit" class="btn" style="margin-top: 5px;">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        @else
-                            <div class="col-sm-6 reference-card">
+                                @if($reference->date)<div class="reference-date">{{ $reference->date }}</div>@endif
                                 <div class="reference-icon">
                                     <i class="fa fa-user-circle-o"></i>
                                 </div>
@@ -51,9 +56,8 @@
                                     <p>"{{ $reference->text }}"</p>
                                 </div>
                             </div>
-                        @endif
-                        <?php $i++; ?>
-                    @if($i == 0 or $i%2 == 0)</div>@endif
+                        @if($i == 0 or $i%2 == 0)</div><div class="row reference-row">@endif
+                    <?php $i++; ?>
                 @endforeach
 
             </div>
