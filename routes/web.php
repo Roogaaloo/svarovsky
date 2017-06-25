@@ -35,6 +35,10 @@ Route::get('/blog/article/{href}', ['as' => 'blog.detail', 'uses' => 'BlogContro
 Route::get('/kontakt', ['as' => 'template.contact', 'uses' => 'ContactController@index']);
 Route::post('/kontakt/sendMessage', ['as' => 'contact.sendMessage', 'uses' => 'ContactController@store']);
 
+
+
+
+
 Auth::routes();
 
 Route::get('logout', ['as' => 'logout', 'uses' => 'Auth\LoginController@logout']);

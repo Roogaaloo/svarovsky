@@ -4,7 +4,7 @@
 
     @include('partitials.static_photo')
 
-    @if($references)
+
         <section id="references">
             <div class="container">
                 <div class="row">
@@ -22,14 +22,14 @@
                                     <h2>Přidat recenzi</h2>
                                 </div>
                                 <div class="form-group col-sm-6">
-                                    <input class="form-control" type="text" name="name" value="{{ old('name') }}" placeholder="Jméno a příjmení">
+                                    <input class="form-control" type="text" name="name" value="{{ old('name') }}" placeholder="Jméno a příjmení" required>
                                 </div>
                                 <div class="form-group col-sm-6">
-                                    <input class="form-control" type="email" name="email" value="{{ old('email') }}" placeholder="E-mail">
+                                    <input class="form-control" type="email" name="email" value="{{ old('email') }}" placeholder="E-mail" required>
                                 </div>
                                 <div class="form-group">
                                     <div class="col-sm-8">
-                                        <textarea class="form-control" name="text" placeholder="Recenze">{{ old('text') }}</textarea>
+                                        <textarea class="form-control" name="text" placeholder="Recenze" required>{{ old('text') }}</textarea>
                                     </div>
                                     <div class="col-sm-4 text-right">
                                         <input type="submit" name="submit" value="Potvrdit" class="btn" style="margin-top: 5px;">
@@ -59,9 +59,8 @@
                         @if($i == 0 or $i%2 == 0)</div><div class="row reference-row">@endif
                     <?php $i++; ?>
                 @endforeach
-
             </div>
         </section>
-    @endif
+
 
 @endsection

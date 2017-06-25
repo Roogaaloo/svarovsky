@@ -217,7 +217,9 @@ section.padding{
 }
 .static-photo{
     min-height: 260px;
-    background: #ccc;
+    background-image: url('../img/top_site.jpg');
+    background-size: cover;
+    background-position: center center;
     margin-top: -70px;
 }
 .number{
@@ -418,12 +420,11 @@ footer>.container{
     margin-bottom: 35px;
 }
 .category-card{
-    border: none;
     background: #87bc26;
     padding: 30px 30px;
     min-height: 270px;
     transition: all 0.3s ease;
-    border:1px solid #fff;
+    border: 1px solid #fff;
 }
 .category-card h2{
     color: #000;

@@ -13,6 +13,9 @@ class MeetingAdmin extends Mailable
     public $name;
     public $email;
     public $text;
+    public $local;
+    public $phone;
+    public $products;
 
     use Queueable, SerializesModels;
 
@@ -21,12 +24,16 @@ class MeetingAdmin extends Mailable
      *
      * @return void
      */
-    public function __construct($name, $email, $text)
+    public function __construct($name, $email, $text, $local, $phone, $productss)
     {
 
         $this->name = $name;
         $this->email = $email;
         $this->text = $text;
+
+        $this->local = $local;
+        $this->phone = $phone;
+        $this->products = $productss;
 
 
     }

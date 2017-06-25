@@ -38,13 +38,12 @@ class HomeController extends Controller
 
     public function addMeeting(Request $request)
     {
-
-
         $validator = Validator::make($request->all(), [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255',
-            'text' => 'required|max:255',
+            'name' => 'required|string',
+            'email' => 'required|string|email',
         ]);
+
+
 
         if($validator->fails()){
             $request->session()->flash('error', "Prosím vyplňte požadovaná pole.");
@@ -52,19 +51,32 @@ class HomeController extends Controller
             return back()->withInput();
         }
 
+        if(!$request->agree){
+            $request->session()->flash('error', "Musíte souhlasit se zpracováním osobních údajů.");
+
+            return back()->withInput();
+        }
+
+        $productss = [$request->bydleni, $request->pojisteni, $request->clean, $request->make, $request->store, $request->analyse];
+
+        $products = implode('||', $productss);
 
         DB::table('meetings')->insert([
             'name' => $request->name,
             'email' => $request->email,
-            'text' => $request->text,
+            'local' => $request->local??'',
+            'telephone' => $request->phone??'',
+            'products' => $products,
+            'text' => $request->text??'',
         ]);
 
         $name = $request->name;
+        $local = $request->local;
+        $phone = $request->phone;
         $email = $request->email;
         $text = $request->text;
 
-
-        Mail::to('robert.galovic@seznam.cz')->send(new MeetingAdmin($name, $email,$text));
+        Mail::to('robert.galovic@seznam.cz')->send(new MeetingAdmin($name, $email, $text, $local, $phone, $productss));
 
         Mail::to($email)->send(new MeetingUser($text));
 
