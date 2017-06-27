@@ -31,7 +31,7 @@
                             <div class="col-sm-4 col-xs-6 text-center category-card">
                                 <h2>{{ $category->name }}</h2>
                                 <p>{{ $category->perex }}</p>
-                                <a href="{{ route('categories.detail', $category->href) }}">Více</a>
+                                <a href="{{ route('categories.detail', $category->href) }}" class="category-btn">Více</a>
                             </div>
                         </a>
                     @endforeach

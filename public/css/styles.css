@@ -557,10 +557,13 @@ footer>.container{
 .home-text-mobile{
     display: none;
 }
-.category-card a{
+.category-card a.category-btn{
     display: none;
 }
 @media (max-width: 767px){
+    .slick-arrow{
+        display: none !important;
+    }
     #footer-contact{
         font-size: 25px;
     }
@@ -613,7 +616,7 @@ footer>.container{
     .category-card h2 {
         font-size: 25px;
     }
-    .category-card a{
+    .category-card a.category-btn{
         display: inline-block;
         color: #87bc26;
     }
