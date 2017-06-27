@@ -11,7 +11,7 @@
         </div>
         <div class="row">
             <div class="col-sm-10 col-sm-offset-1">
-                <p>{{ $article->text }}</p>
+                <p>{!! $article->text !!}</p>
             </div>
         </div>
     </div>

@@ -21,7 +21,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-sm-6 col-sm-offset-3">
+                <div class="col-md-6 col-md-offset-3 col-sm-10 col-sm-offset-1 col-xs-12">
                     <form action="{{ route('contact.sendMessage') }}" method="post">
                         {!! csrf_field() !!}
                         <div class="row">
@@ -59,7 +59,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-sm-6 col-sm-offset-3">
+                <div class="col-md-6 col-md-offset-3 col-sm-10 col-sm-offset-1 col-xs-12">
                     <img src="img/map.gif" alt="Kam za vámi přijedu?" class="img-responsive center-block" style="width: 100%">
                 </div>
             </div>

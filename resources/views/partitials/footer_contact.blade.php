@@ -1,6 +1,6 @@
 <div id="footer-contact">
     <div class="container">
-        <div class="row text-center">
+        <div class="row">
             <div class="col-sm-4">
                 <a href="{{ route('template.contact') }}">Ing. Jiří Svarovský</a>
             </div>

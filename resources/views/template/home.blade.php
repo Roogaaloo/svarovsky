@@ -6,15 +6,32 @@
 
     @include('partitials.slider')
 
+    @if($home_text)
+        <section id="home-text" class="padding shadow-background home-text-mobile">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6" style="background-image:url({{ $home_text->media }});background-size: cover;background-position: center center;height:350px;">
+                    </div>
+                    <div class="col-sm-6 text-about">
+                        @if($home_text->heading)<h2>{{ $home_text->heading }}</h2>@endif
+                        @if($home_text->text){!! $home_text->text !!}@endif<br />
+                        <a herf="{{ route('template.about') }}" class="btn">Více</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    @endif
+
     @if($categories)
         <section id="categories">
             <div class="container hp-categories">
                 <div class="row">
                     @foreach($categories as $category)
                         <a href="{{ route('categories.detail', $category->href) }}">
-                            <div class="col-sm-4 text-center category-card">
+                            <div class="col-sm-4 col-xs-6 text-center category-card">
                                 <h2>{{ $category->name }}</h2>
                                 <p>{{ $category->perex }}</p>
+                                <a href="{{ route('categories.detail', $category->href) }}">Více</a>
                             </div>
                         </a>
                     @endforeach
@@ -29,7 +46,7 @@
     @endif
 
     @if($home_text)
-        <section id="home-text" class="padding shadow-background">
+        <section id="home-text" class="padding shadow-background home-text-desktop">
             <div class="container">
                 <div class="row">
                     <div class="col-sm-6" style="background-image:url({{ $home_text->media }});background-size: cover;background-position: center center;height:350px;">
@@ -65,7 +82,7 @@
     @endif
 
     @if($articles)
-        <section id="articles" class="padding shadow-background">
+        <section id="articles" class="padding shadow-background homepage">
             <div class="container">
                 <div class="row">
                     @foreach($articles as $article)
@@ -97,7 +114,7 @@
                 </div>
                 <div class="row">
                     @foreach($partners as $partner)
-                        <div class="col-sm-3 text-center partner-item">
+                        <div class="col-xs-3 text-center partner-item">
                             <img src="{{ $partner->image }}" alt="{{ $partner->name }}" class="img-responsive">
                         </div>
                     @endforeach

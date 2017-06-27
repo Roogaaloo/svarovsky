@@ -79,7 +79,7 @@
         if($('.alert').length !== 0){
             if($('.alert').html().length > 0){
 
-                $('.alert').animate({top: '0px', opacity: '0.95'}, 600, 'swing').delay(2000).animate({top: '-50px'},300, 'swing');
+                $('.alert').animate({top: $('.alert').height()+23, opacity: '0.95'}, 600, 'swing').delay(2000).animate({top: '0px'},300, 'swing');
             }
         }
     });

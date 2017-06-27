@@ -13,7 +13,7 @@
                     </div>
                 </div>
                 <div class="row reference-row">
-                    <div class="col-sm-6 reference-card">
+                    <div class="col-sm-12 col-md-6 reference-card">
                         <form action="{{ route('reference.addComment') }}" method="post">
 
                             {!! csrf_field() !!}
@@ -46,7 +46,7 @@
 
                 @foreach($references as $reference)
 
-                            <div class="col-sm-6 reference-card">
+                            <div class="col-sm-12 col-md-6 reference-card">
                                 @if($reference->date)<div class="reference-date">{{ $reference->date }}</div>@endif
                                 <div class="reference-icon">
                                     <i class="fa fa-user-circle-o"></i>

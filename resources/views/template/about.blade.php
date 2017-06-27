@@ -15,7 +15,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-sm-4">
+                    <div class="col-sm-4 about-img">
                         <img src="{{ $about->image }}" alt="Svarovský Jiří" class="img-responsive">
                     </div>
                     <div class="col-sm-8">
@@ -42,7 +42,7 @@
                         <h3>{{ $c }}</h3>
                         @foreach($partners as $partner)
                             @if($partner->category == $c)
-                                <div class="col-sm-2">
+                                <div class="col-xs-2 about-partners">
                                     <img src="{{ $partner->image }}" alt="{{ $partner->name }}" class="img-responsive">
                                 </div>
                             @endif
