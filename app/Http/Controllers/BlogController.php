@@ -11,14 +11,14 @@ class BlogController extends Controller
 {
     public function index()
     {
-        $articles = DB::table('articles')->where('status', 1)->orderBy('created_at', 'desc')->get();
+        $articles = DB::table('articles')->where('status', 1)->orderBy('publish_at', 'desc')->get();
 
         return view('blog.list', compact('articles'));
     }
 
     public function indexAdmin()
     {
-        $articles = DB::table('articles')->where('status', 1)->orderBy('created_at', 'desc')->get();
+        $articles = DB::table('articles')->where('status', 1)->orderBy('publish_at', 'desc')->get();
 
         return view('admin.blog.list', compact('articles'));
     }
@@ -41,10 +41,12 @@ class BlogController extends Controller
                 'title' => $request->title,
                 'text' => $request->text,
                 'perex' => $request->perex,
+                'date' => $request->date,
                 'category' => $request->category,
                 'href' => $request->href,
                 'status' => $request->status??0,
                 'hp_status' => $request->hp_status??0,
+                'publish_at' => $request->publish_at,
             ]);
 
         if ($request->file('image')) {
@@ -81,10 +83,13 @@ class BlogController extends Controller
                 'text' => $request->text,
                 'perex' => $request->perex,
                 'category' => $request->category,
+                'date' => $request->date,
+
                 'href' => $request->href,
                 'status' => $request->status??0,
                 'hp_status' => $request->hp_status??0,
                 'created_at' => date("Y-m-d H:i:s"),
+                'publish_at' => $request->publish_at,
             ]);
 
         if ($request->file('image')) {

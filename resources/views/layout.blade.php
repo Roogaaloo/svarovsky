@@ -124,7 +124,7 @@
             $('footer').css('width','100%');
             $('footer').css('bottom','0px');
         }
-        $(".page-loader").delay(300).fadeOut(300);
+
         if($('.alert').length !== 0){
             if($('.alert').html().length > 0){
 
@@ -140,7 +140,47 @@
             $(this).next('input[type="checkbox"]').prop('checked', false);
         });
 
+
+        if($(window).width() > 767) {
+            var maxHeight = -1;
+            $(this).find("#categories .category-card").each(function () {
+                if ($(this).height() > maxHeight) {
+                    maxHeight = $(this).height();
+                }
+            });
+            $('#categories .category-card').height(maxHeight);
+        }
+
+
+        $(".page-loader").delay(300).fadeOut(300);
+
     });
+
+    $(window).one('resize', function(){
+        if($(window).width() > 767) {
+            var maxHeight = -1;
+            $(this).find("#categories .category-card").each(function () {
+                if ($(this).height() > maxHeight) {
+                    maxHeight = $(this).height();
+                }
+            });
+            $('#categories .category-card').height(maxHeight);
+        }
+    });
+
+    $(window).resize(function(){
+        if($(window).width() > 767) {
+            var maxHeight = -1;
+            $('#categories .category-card').each(function () {
+                if ($(this).height() > maxHeight) {
+                    maxHeight = $(this).height();
+                }
+                $('#categories .category-card').height(maxHeight);
+            });
+        }
+    });
+
+
     $(window).scroll(function () {
       /*  if($(window).scrollTop() > 350){
             $('.meeting-slide').css('right','-300px');
@@ -165,7 +205,10 @@
         var uluru = {lat: 49.1758315, lng:16.6056285};
         var map = new google.maps.Map(document.getElementById('map'), {
             zoom: 12,
-            center: uluru
+            center: uluru,
+            scrollwheel:false,
+            draggable:true,
+
         });
         var marker = new google.maps.Marker({
             position: uluru,

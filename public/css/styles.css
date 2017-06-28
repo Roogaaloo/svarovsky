@@ -6,6 +6,11 @@ body{
     color: #333;
     background: #f3f3f3;
 }
+.blog-date{
+    color: #888;
+    margin-top: -10px;
+    margin-bottom: 15px;
+}
 #map{
    height: 400px;
    margin-bottom: -50px;
@@ -248,6 +253,9 @@ h3{
 p{
     color: #666;
 }
+ul li{
+    color: #666;
+}
 a{
     color: #333;
     transition: 0.3s ease;
@@ -288,13 +296,19 @@ span.glyphicon:hover{
     margin-left: 4.1%;
     margin-right: 4.1%;
     min-height: 300px;
+    cursor: pointer;
 }
 .hp-article:hover span.glyphicon{
     color: #87bc26;
 }
+.hp-article:hover a.btn{
+    color: #87bc26;
+    background: transparent;
+}
 #articles .col-sm-4{
     margin-bottom: 30px;
     min-height: 300px;
+    cursor: pointer;
 }
 .blog-icon{
     display:inline-block;
@@ -426,6 +440,10 @@ footer>.container{
     min-height: 270px;
     transition: all 0.3s ease;
     border: 1px solid #fff;
+    cursor: pointer;
+}
+.category-card:nth-child(2n+2){
+    background: #ccc;
 }
 .category-card h2{
     color: #000;
@@ -446,9 +464,7 @@ footer>.container{
 .category-card:hover h2, .category-card:hover p{
     color: #fff;
 }
-#categories a:nth-child(2n+2) .category-card{
-    background: #ccc;
-}
+
 .partner-item{
     margin-bottom: 30px;
 }
@@ -561,6 +577,9 @@ footer>.container{
     display: none;
 }
 @media (max-width: 767px){
+    footer{
+        text-align: center;
+    }
     .slick-arrow{
         display: none !important;
     }
@@ -572,7 +591,6 @@ footer>.container{
     }
     .hp-categories {
         margin-top: 0px;
-        padding-top: 20px;
     }
     .category-card{
         background: none;
@@ -666,10 +684,23 @@ footer>.container{
     #map {
         height: 300px;
     }
+    h1 {
+        font-size: 38px;
+    }
+    .header-block {
+        padding: 20px 0px 10px;
+    }
+    h2 {
+        font-size: 30px;
+    }
+    h3 {
+        font-size: 24px;
+    }
 }
 @media (max-width: 330px) {
     .navbar-brand {
         padding: 15px 7px;
+        width: 80%;
     }
     .navbar-brand img {
         width: 65%;
@@ -681,12 +712,7 @@ footer>.container{
     #home-text{
         padding-top: 10px;
     }
-    h1 {
-        font-size: 42px;
-    }
-    h2 {
-        font-size: 28px;
-    }
+
     .reference-content h2 {
         font-size: 20px;
     }

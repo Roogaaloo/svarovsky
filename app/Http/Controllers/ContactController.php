@@ -20,6 +20,15 @@ class ContactController extends Controller
         return view('template.contact');
     }
 
+    public function indexAdmin()
+    {
+
+
+        $heading = 'Kontakt';
+
+        return view('admin.contact.list', compact('heading'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *

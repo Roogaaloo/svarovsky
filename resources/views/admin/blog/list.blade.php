@@ -15,7 +15,7 @@
                                 <td>Krátký popis</td>
                                 <td class="text-center">Status</td>
                                 <td class="text-center">HP Status</td>
-                                <td>Datum vytvoření</td>
+                                <td>Datum publikace</td>
                                 <td class="text-right">Akce</td>
                             </tr>
                         </thead>
@@ -27,7 +27,7 @@
                                 <td>{{ substr($article->perex, 0,45) }}...</td>
                                 <td class="text-center">{{ $article->status }}</td>
                                 <td class="text-center">{{ $article->hp_status }}</td>
-                                <td>{{ $article->created_at }}</td>
+                                <td>{{ $article->publish_at }}</td>
                                 <td class="text-right">
                                     <a href="{{ route('admin.blog.edit', $article->id) }}" title="Upravit"><i class="fa fa-pencil"></i></a>
                                     <a href="{{ route('admin.blog.delete', $article->id) }}" title="Smazat"><i class="fa fa-times"></i></a>

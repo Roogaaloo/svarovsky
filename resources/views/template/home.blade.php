@@ -27,13 +27,13 @@
             <div class="container hp-categories">
                 <div class="row">
                     @foreach($categories as $category)
-                        <a href="{{ route('categories.detail', $category->href) }}">
-                            <div class="col-sm-4 col-xs-6 text-center category-card">
+
+                            <div class="col-sm-4 col-xs-6 text-center category-card" onclick="location.href='{{ route('categories.detail', $category->href) }}'">
                                 <h2>{{ $category->name }}</h2>
                                 <p>{{ $category->perex }}</p>
                                 <a href="{{ route('categories.detail', $category->href) }}" class="category-btn">Více</a>
                             </div>
-                        </a>
+
                     @endforeach
                 </div>
                 <div class="row">
@@ -54,7 +54,7 @@
                     <div class="col-sm-6 text-about">
                         @if($home_text->heading)<h2>{{ $home_text->heading }}</h2>@endif
                         @if($home_text->text){!! $home_text->text !!}@endif<br />
-                        <a herf="{{ route('template.about') }}" class="btn">Více</a>
+                        <a href="{{ route('template.about') }}" class="btn">Více</a>
                     </div>
                 </div>
             </div>
@@ -86,18 +86,17 @@
             <div class="container">
                 <div class="row">
                     @foreach($articles as $article)
-                        <a href="{{ route('blog.detail', $article->href) }}">
-                            <div class="col-sm-5 hp-article">
-                                <div class="blog-icon">
-                                    <span class="glyphicon glyphicon-pencil"></span>
-                                </div>
-                                <div class="blog-content">
-                                    <h3>{{ $article->title }}</h3>
-                                    <p>{{ $article->perex }}</p>
-                                    <a href="{{ route('blog.detail', $article->href) }}" class="btn">Číst více</a>
-                                </div>
+                        <div class="col-sm-5 hp-article" onclick="location.href='{{ route('blog.detail', $article->href) }}'">
+                            <div class="blog-icon">
+                                <span class="glyphicon glyphicon-pencil"></span>
                             </div>
-                        </a>
+                            <div class="blog-content">
+                                <h3>{{ $article->title }}</h3>
+                                <div class="blog-date">{{ $article->date }}</div>
+                                <p>{{ $article->perex }}</p>
+                                <a href="{{ route('blog.detail', $article->href) }}" class="btn">Číst více</a>
+                            </div>
+                        </div>
                     @endforeach
                 </div>
             </div>
@@ -109,7 +108,7 @@
             <div class="container hp-partners">
                 <div class="row">
                     <div class="col-sm-12 text-center header-block">
-                        <h2>Parneři</h2>
+                        <h2>Partneři</h2>
                     </div>
                 </div>
                 <div class="row">

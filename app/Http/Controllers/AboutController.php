@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
+use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Storage;
 
 class AboutController extends Controller
 {
@@ -35,21 +38,46 @@ class AboutController extends Controller
     {
         $about = DB::table('about')->first();
 
-        $partners = DB::table('partners')->where('status', 1)->get();
-
-        $category = array();
-
-        foreach($partners as $p){
-            if($p->category){
-                if(!in_array($p->category, $category)){
-                    array_push($category, $p->category);
-                }
-            }
-        }
-
         $heading = 'Proč se mnou';
 
         return view('admin.about.list', compact('about','partners', 'category', 'heading'));
+    }
+
+    public function indexAdminPartners()
+    {
+        $pojisteni = DB::table('partners')->where('category', 'Pojištění')->get();
+        $inv_spol = DB::table('partners')->where('category', 'Investiční společnosti')->get();
+        $hypoteka = DB::table('partners')->where('category', 'Hypoteční úvěry')->get();
+        $stavebni = DB::table('partners')->where('category', 'Stavební spoření')->get();
+        $uvery = DB::table('partners')->where('category', 'Úvěry fyzickým osobám')->get();
+        $penzijni = DB::table('partners')->where('category', 'Doplňkové penzijní spoření')->get();
+        $nefinancni = DB::table('partners')->where('category', 'Nefinanční produkty')->get();
+
+        $heading = 'Partneři';
+
+        return view('admin.partners.list', compact('pojisteni', 'inv_spol', 'hypoteka', 'stavebni', 'uvery', 'penzijni', 'nefinancni', 'heading'));
+    }
+
+    public function update(Request $request)
+    {
+        DB::table('about')
+            ->where('id', 1)
+            ->update([
+                'text' => $request->text,
+            ]);
+
+        if ($request->file('image')) {
+            DB::table('about')
+                ->where('id', 1)
+                ->update([
+                    'image' => '/img/about/' . $request->image->getClientOriginalName(),
+                ]);
+            $request->file('image')->move('img/about', $request->image->getClientOriginalName());
+        }
+
+        $request->session()->flash('success', "Sekce proč se mnou upravena!");
+
+        return Redirect::action('AboutController@indexAdmin');
     }
 
     /**
@@ -102,10 +130,7 @@ class AboutController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
-    }
+
 
     /**
      * Remove the specified resource from storage.

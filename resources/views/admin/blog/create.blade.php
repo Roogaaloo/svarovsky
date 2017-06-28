@@ -26,14 +26,23 @@
                 @ckeditor('text', ['height' => 200])
             </div>
             <div class="form-group">
+                <label>Datum k zobrazení</label>
+                <input class="form-control" type="text" name="date" required>
+            </div>
+            <div class="form-group hidden">
                 <label>Kategorie</label>
-                <input class="form-control" type="text" name="category" required>
+                <input class="form-control" type="text" name="category" value="1">
             </div>
 
            {{-- <div class="form-group">
                 <label>Obrázek</label>
                 <input class="form-control" type="file" name="image">
             </div>--}}
+
+            <div class="form-group">
+                <label>Reálné datum publikace</label>
+                <input class="form-control" type="date" name="publish_at" required>
+            </div>
 
             <div class="form-group">
                 <input type="checkbox" name="status" value="1">

@@ -16,7 +16,7 @@
                 </div>
                 <div class="row">
                     <div class="col-sm-4 about-img">
-                        <img src="{{ $about->image }}" alt="Svarovský Jiří" class="img-responsive">
+                        <img src="{{ $about->image }}" alt="Svarovský Jiří" class="img-responsive center-block">
                     </div>
                     <div class="col-sm-8">
                         {!! $about->text !!}

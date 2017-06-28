@@ -22,7 +22,7 @@ class HomeController extends Controller
     {
         $categories = DB::table('categories')->where('status', 1)->where('hp_status', 1)->get();
         $home_text = DB::table('home_text')->first();
-        $articles = DB::table('articles')->where('status', 1)->where('hp_status', 1)->get();
+        $articles = DB::table('articles')->where('status', 1)->where('hp_status', 1)->orderBy('publish_at', 'desc')->get();
         $references = DB::table('references')->where('status', 1)->where('hp_status', 1)->get();
         $partners = DB::table('partners')->where('status', 1)->where('hp_status', 1)->get();
 

@@ -52,8 +52,16 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
 
     Route::get('', ['as' => 'admin.template.home', 'uses' => 'admin\AdminController@index']);
 
-    Route::get('proc-se-mnou', ['as' => 'admin.about.list', 'uses' => 'AboutController@indexAdmin']);
-    Route::get('proc-se-mnou/edit', ['as' => 'admin.about.edit', 'uses' => 'AboutController@edit']);
+
+    Route::group(['prefix' => 'proc-se-mnou'], function () {
+        Route::get('', ['as' => 'admin.about.list', 'uses' => 'AboutController@indexAdmin']);
+        Route::post('update', ['as' => 'admin.about.update', 'uses' => 'AboutController@update']);
+    });
+
+    Route::group(['prefix' => 'partneri'], function () {
+        Route::get('', ['as' => 'admin.partners.list', 'uses' => 'AboutController@indexAdminPartners']);
+        Route::post('store', ['as' => 'admin.partners.store', 'uses' => 'AboutController@store']);
+    });
 
     Route::group(['prefix' => 'produkty'], function () {
         Route::get('', ['as' => 'admin.categories.list', 'uses' => 'CategoryController@indexAdmin']);
@@ -78,6 +86,11 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
         Route::get('/{id}/edit', ['as' => 'admin.reference.edit', 'uses' => 'ReferenceController@edit']);
         Route::post('{id}/update', ['as' => 'admin.reference.update', 'uses' => 'ReferenceController@update']);
         Route::get('{id}/delete', ['as' => 'admin.reference.delete', 'uses' => 'ReferenceController@destroy']);
+    });
+
+    Route::group(['prefix' => 'kontakt'], function () {
+        Route::get('', ['as' => 'admin.contact.list', 'uses' => 'ContactController@indexAdmin']);
+        Route::post('update', ['as' => 'admin.contact.store', 'uses' => 'ContactController@update']);
     });
 
 

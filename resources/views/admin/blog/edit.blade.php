@@ -26,9 +26,9 @@
                 @ckeditor('text', ['height' => 200])
             </div>
 
-            <div class="form-group">
+            <div class="form-group hidden">
                 <label>Kategorie</label>
-                <input class="form-control" type="text" name="category"  value="{{ $article->category }}" required>
+                <input class="form-control" type="text" name="category"  value="1" required>
             </div>
 
             {{--<div class="form-group">
@@ -36,6 +36,16 @@
                 <input class="form-control" type="file" name="image">
                 @if($article->image)<img src="{{ $article->image }}" width="200px">@else Fotka nepřiřazena @endif
             </div>--}}
+
+            <div class="form-group">
+                <label>Datum k zobrazení</label>
+                <input class="form-control" type="text" name="date" value="{{ $article->date }}" required>
+            </div>
+
+            <div class="form-group">
+                <label>Reálné datum publikace</label>
+                <input class="form-control" type="date" name="publish_at" value="{{ $article->publish_at }}" required>
+            </div>
 
             <div class="form-group">
                 <input type="checkbox" name="status" value="1" @if($article->status) checked @endif>
