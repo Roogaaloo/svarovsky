@@ -10,7 +10,7 @@
                     <table class="table table-striped">
                         <thead style="font-weight: 600;">
                             <tr>
-                                <td>ID</td>
+
                                 <td>Jméno</td>
                                 <td>Krátký popis</td>
                                 <td class="text-center">Status</td>
@@ -22,11 +22,23 @@
                         <tbody>
                         @foreach($articles as $article)
                             <tr>
-                                <td>{{ $article->id }}</td>
+
                                 <td>{{ $article->title }}</td>
                                 <td>{{ substr($article->perex, 0,45) }}...</td>
-                                <td class="text-center">{{ $article->status }}</td>
-                                <td class="text-center">{{ $article->hp_status }}</td>
+                                <td class="text-center">
+                                    @if($article->status == 1)
+                                        <i class="fa fa-check"></i>
+                                    @else
+                                        <i class="fa fa-times"></i>
+                                    @endif
+                                </td>
+                                <td class="text-center">
+                                    @if($article->hp_status == 1)
+                                        <i class="fa fa-check"></i>
+                                    @else
+                                        <i class="fa fa-times"></i>
+                                    @endif
+                                </td>
                                 <td>{{ $article->publish_at }}</td>
                                 <td class="text-right">
                                     <a href="{{ route('admin.blog.edit', $article->id) }}" title="Upravit"><i class="fa fa-pencil"></i></a>

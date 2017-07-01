@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\ContactAdmin;
 use App\Mail\ContactUser;
+use Illuminate\Support\Facades\Redirect;
 
 class ContactController extends Controller
 {
@@ -26,7 +27,11 @@ class ContactController extends Controller
 
         $heading = 'Kontakt';
 
-        return view('admin.contact.list', compact('heading'));
+        $contact = DB::table('contact')->first();
+
+        $home_text = DB::table('home_text')->first();
+
+        return view('admin.contact.list', compact('heading', 'contact', 'home_text'));
     }
 
     /**
@@ -96,9 +101,36 @@ class ContactController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        DB::table('contact')
+            ->where('id', 1)
+            ->update([
+                'text' => $request->text,
+                'telephone' => $request->phone,
+                'email' => $request->email,
+                'name' => $request->name,
+            ]);
+
+        DB::table('home_text')
+            ->where('id', 1)
+            ->update([
+                'heading' => $request->heading,
+                'text' => $request->text,   
+            ]);
+
+        if ($request->file('image')) {
+            DB::table('home_text')
+                ->where('id', 1)
+                ->update([
+                    'media' => '/img/about/' . date("YmdHis") . $request->image->getClientOriginalName(),
+                ]);
+            $request->file('image')->move('img/about', date("YmdHis") . $request->image->getClientOriginalName());
+        }
+
+        $request->session()->flash('success', "Sekce kontakt upravena!");
+
+        return Redirect::action('ContactController@indexAdmin');
     }
 
     /**

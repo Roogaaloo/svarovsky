@@ -27,8 +27,20 @@
                                 <td>{{ $category->id }}</td>
                                 <td>{{ $category->name }}</td>
                                 <td>{{ substr($category->perex, 0,45) }}...</td>
-                                <td class="text-center">{{ $category->status }}</td>
-                                <td class="text-center">{{ $category->hp_status }}</td>
+                                <td class="text-center">
+                                    @if($category->status == 1)
+                                        <i class="fa fa-check"></i>
+                                    @else
+                                        <i class="fa fa-times"></i>
+                                    @endif
+                                </td>
+                                <td class="text-center">
+                                    @if($category->hp_status == 1)
+                                        <i class="fa fa-check"></i>
+                                    @else
+                                        <i class="fa fa-times"></i>
+                                    @endif
+                                </td>
 
                                 <td class="text-right">
                                     <a href="{{ route('admin.categories.edit', $category->id) }}" title="Upravit"><i class="fa fa-pencil"></i></a>

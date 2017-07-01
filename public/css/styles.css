@@ -16,7 +16,7 @@ body{
    margin-bottom: -50px;
 }
 .alert{
-    position: absolute;
+    position: fixed;
     top: 0px;
     transform: translateY(-100%);
     right: 0px;
@@ -489,10 +489,24 @@ footer>.container{
 #partners h3{
     padding-left: 15px;
 }
+.about-partners{
+    height: 130px;
+    transition: 0.2s ease;
+    filter: grayscale(100%);
+    opacity: 0.6;
+    transform: scale(0.98);
+}
+.about-partners:hover{
+    filter: grayscale(0%);
+    opacity: 1;
+    transform: scale(1);
+}
+
 @media (min-width: 992px){
     .reference-item{
         padding: 0px 230px;
     }
+
 }
 @media (max-width: 1199px){
     .menu-padding{
@@ -808,6 +822,33 @@ footer>.container{
 .admin-content{
     min-height: 1000px;
     background: #f1f1f1;
+}
+.admin-content table tr td{
+    vertical-align: middle;
+}
+.admin-content .fa-check{
+    font-size: 13px;
+    color:#fff;
+    background:#87bc26;
+    padding: 3px 3px 2px;
+    border-radius: 100%;
+}
+.admin-content .text-center .fa-times{
+    font-size: 13px;
+    color:#fff;
+    background:red;
+    padding: 3px 5px 3px;
+    border-radius: 100%;
+    position: relative;
+}
+.delete-partner a i{
+    position: absolute;
+    top: 5px;
+    right: -5px;
+    color: red;
+    font-size: 14px;
+    font-weight: 400;
+    cursor: pointer;
 }
 
 

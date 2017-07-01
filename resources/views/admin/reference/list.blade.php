@@ -24,8 +24,20 @@
                                 <td>{{ $reference->name }}</td>
                                 <td>{{ substr($reference->text, 0, 50) }}...</td>
                                 <td>{{ $reference->created_at }}</td>
-                                <td class="text-center">{{ $reference->status }}</td>
-                                <td class="text-center">{{ $reference->hp_status }}</td>
+                                <td class="text-center">
+                                    @if($reference->status == 1)
+                                        <i class="fa fa-check"></i>
+                                    @else
+                                        <i class="fa fa-times"></i>
+                                    @endif
+                                </td>
+                                <td class="text-center">
+                                    @if($reference->hp_status == 1)
+                                        <i class="fa fa-check"></i>
+                                    @else
+                                        <i class="fa fa-times"></i>
+                                    @endif
+                                </td>
                                 <td class="text-right">
                                     <a href="{{ route('admin.reference.edit', $reference->id) }}" title="Upravit"><i class="fa fa-pencil"></i></a>
                                     <a href="{{ route('admin.reference.delete', $reference->id) }}" title="Smazat"><i class="fa fa-times"></i></a>

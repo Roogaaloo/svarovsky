@@ -46,16 +46,13 @@ class AboutController extends Controller
     public function indexAdminPartners()
     {
         $pojisteni = DB::table('partners')->where('category', 'Pojištění')->get();
-        $inv_spol = DB::table('partners')->where('category', 'Investiční společnosti')->get();
-        $hypoteka = DB::table('partners')->where('category', 'Hypoteční úvěry')->get();
         $stavebni = DB::table('partners')->where('category', 'Stavební spoření')->get();
-        $uvery = DB::table('partners')->where('category', 'Úvěry fyzickým osobám')->get();
-        $penzijni = DB::table('partners')->where('category', 'Doplňkové penzijní spoření')->get();
-        $nefinancni = DB::table('partners')->where('category', 'Nefinanční produkty')->get();
+        $penze = DB::table('partners')->where('category', 'Penze')->get();
+        $banky = DB::table('partners')->where('category', 'Banky')->get();
 
         $heading = 'Partneři';
 
-        return view('admin.partners.list', compact('pojisteni', 'inv_spol', 'hypoteka', 'stavebni', 'uvery', 'penzijni', 'nefinancni', 'heading'));
+        return view('admin.partners.list', compact('pojisteni', 'stavebni', 'uvery', 'penze', 'banky', 'heading'));
     }
 
     public function update(Request $request)
@@ -70,9 +67,9 @@ class AboutController extends Controller
             DB::table('about')
                 ->where('id', 1)
                 ->update([
-                    'image' => '/img/about/' . $request->image->getClientOriginalName(),
+                    'image' => '/img/about/' . date("YmdHis") . $request->image->getClientOriginalName(),
                 ]);
-            $request->file('image')->move('img/about', $request->image->getClientOriginalName());
+            $request->file('image')->move('img/about', date("YmdHis") . $request->image->getClientOriginalName());
         }
 
         $request->session()->flash('success', "Sekce proč se mnou upravena!");
@@ -98,7 +95,61 @@ class AboutController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if ($request->file('banky')) {
+            DB::table('partners')
+                ->insert([
+                    'image' => '/img/partners/' . date("YmdHis") . $request->banky->getClientOriginalName(),
+                    'category' => 'Banky',
+                    'name' => '',
+                    'text' => '',
+                    'href' => '',
+                    'status' => 1,
+                ]);
+            $request->file('banky')->move('img/partners', date("YmdHis") . $request->banky->getClientOriginalName());
+        }
+
+        if ($request->file('pojisteni')) {
+            DB::table('partners')
+                ->insert([
+                    'image' => '/img/partners/' . date("YmdHis") . $request->pojisteni->getClientOriginalName(),
+                    'category' => 'Pojištění',
+                    'name' => '',
+                    'text' => '',
+                    'href' => '',
+                    'status' => 1,
+                ]);
+            $request->file('pojisteni')->move('img/partners', date("YmdHis") . $request->pojisteni->getClientOriginalName());
+        }
+
+        if ($request->file('penze')) {
+            DB::table('partners')
+                ->insert([
+                    'image' => '/img/partners/' . date("YmdHis") . $request->penze->getClientOriginalName(),
+                    'category' => 'Penze',
+                    'name' => '',
+                    'text' => '',
+                    'href' => '',
+                    'status' => 1,
+                ]);
+            $request->file('penze')->move('img/partners', date("YmdHis") . $request->penze->getClientOriginalName());
+        }
+
+        if ($request->file('stavebni')) {
+            DB::table('partners')
+                ->insert([
+                    'image' => '/img/partners/' . date("YmdHis") . $request->stavebni->getClientOriginalName(),
+                    'category' => 'Stavební spoření',
+                    'name' => '',
+                    'text' => '',
+                    'href' => '',
+                    'status' => 1,
+                ]);
+            $request->file('stavebni')->move('img/partners', date("YmdHis") . $request->stavebni->getClientOriginalName());
+        }
+
+        $request->session()->flash('success', "Partneři byli upraveni!");
+
+        return Redirect::action('AboutController@indexAdminPartners');
     }
 
     /**
@@ -138,8 +189,14 @@ class AboutController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        //
+        DB::table('partners')
+            ->where('id', $id)
+            ->delete();
+
+        $request->session()->flash('success', "Partner byl smazán!");
+
+        return Redirect::action('AboutController@indexAdminPartners');
     }
 }

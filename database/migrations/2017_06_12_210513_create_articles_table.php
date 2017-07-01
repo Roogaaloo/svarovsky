@@ -20,7 +20,7 @@ class CreateArticlesTable extends Migration
             $table->text('perex');
             $table->text('text');
             $table->text('image');
-            $table->string('date')->default('null');
+            $table->string('date')->default(null);
             $table->integer('category');
             $table->integer('related')->default(0);
             $table->integer('views')->default(0);

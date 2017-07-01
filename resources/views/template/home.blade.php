@@ -67,7 +67,7 @@
                 <div class="row">
                     <div class="col-sm-10 col-sm-offset-1 single-item text-center">
                         @foreach($references as $reference)
-                            <div class="reference-item">
+                            <div class="reference-item" onclick="location.href='{{ route('reference.list') }}'">
                                 <div class="reference-icon reference-icon-hp">
                                     <i class="fa fa-user-circle-o"></i>
                                 </div>
@@ -104,6 +104,7 @@
     @endif
 
     @if($partners)
+        <?php $a = 0; ?>
         <section id="partners" >
             <div class="container hp-partners">
                 <div class="row">
@@ -113,9 +114,12 @@
                 </div>
                 <div class="row">
                     @foreach($partners as $partner)
-                        <div class="col-xs-3 text-center partner-item">
-                            <img src="{{ $partner->image }}" alt="{{ $partner->name }}" class="img-responsive">
-                        </div>
+                        @if($a < 6)
+                            <div class="col-xs-3 col-sm-2 text-center partner-item">
+                                <img src="{{ $partner->image }}" alt="{{ $partner->name }}" class="img-responsive">
+                            </div>
+                            <?php $a++; ?>
+                        @endif
                     @endforeach
                 </div>
                 <div class="row">
@@ -125,6 +129,7 @@
                 </div>
             </div>
         </section>
+
     @endif
 
 @endsection

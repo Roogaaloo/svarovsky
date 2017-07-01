@@ -18,7 +18,7 @@ class BlogController extends Controller
 
     public function indexAdmin()
     {
-        $articles = DB::table('articles')->where('status', 1)->orderBy('publish_at', 'desc')->get();
+        $articles = DB::table('articles')->orderBy('publish_at', 'desc')->get();
 
         return view('admin.blog.list', compact('articles'));
     }
@@ -53,9 +53,9 @@ class BlogController extends Controller
             DB::table('articles')
                 ->where('id', $id)
                 ->update([
-                    'image' => '/img/articles/' . $request->image->getClientOriginalName(),
+                    'image' => '/img/articles/' . date("YmdHis") . $request->image->getClientOriginalName(),
                 ]);
-            $request->file('image')->move('img/articles', $request->image->getClientOriginalName());
+            $request->file('image')->move('img/articles', date("YmdHis") . $request->image->getClientOriginalName());
         }
 
         $request->session()->flash('success', "Článek byl upraven!");
@@ -95,9 +95,9 @@ class BlogController extends Controller
         if ($request->file('image')) {
             DB::table('articles')
                 ->insert([
-                    'image' => '/img/articles/' . $request->image->getClientOriginalName(),
+                    'image' => '/img/articles/' . date("YmdHis") . $request->image->getClientOriginalName(),
                 ]);
-            $request->file('image')->move('img/articles', $request->image->getClientOriginalName());
+            $request->file('image')->move('img/articles', date("YmdHis") . $request->image->getClientOriginalName());
         }
 
 

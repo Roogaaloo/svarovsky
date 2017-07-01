@@ -2,13 +2,13 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-4">
-                <a href="{{ route('template.contact') }}">Ing. Jiří Svarovský</a>
+                <a href="{{ route('template.contact') }}">{!! $contact->name !!}</a>
             </div>
             <div class="col-sm-4">
-                <a href="{{ route('template.contact') }}"> <span class="number">+420 608 475 778</span></a>
+                <a href="{{ route('template.contact') }}"> <span class="number">{!! $contact->telephone !!}</span></a>
             </div>
             <div class="col-sm-4">
-                <a href="mailto:svarovsky.jiri@gmail.com">svarovsky.jiri@gmail.com</a>
+                <a href="mailto:{{ $contact->email }}">{{ $contact->email }}</a>
             </div>
         </div>
     </div>

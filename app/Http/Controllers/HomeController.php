@@ -20,14 +20,16 @@ class HomeController extends Controller
      */
     public function index()
     {
+
+        $banners = DB::table('banners')->where('status', 1)->orderBy('sort', 'asc')->get();
         $categories = DB::table('categories')->where('status', 1)->where('hp_status', 1)->get();
         $home_text = DB::table('home_text')->first();
         $articles = DB::table('articles')->where('status', 1)->where('hp_status', 1)->orderBy('publish_at', 'desc')->get();
         $references = DB::table('references')->where('status', 1)->where('hp_status', 1)->get();
-        $partners = DB::table('partners')->where('status', 1)->where('hp_status', 1)->get();
+        $partners = DB::table('partners')->where('status', 1)->get();
 
 
-       return view('template.home', compact('categories','home_text', 'articles', 'references', 'partners'));
+       return view('template.home', compact('categories','home_text', 'articles', 'references', 'partners', 'banners'));
     }
 
     /**

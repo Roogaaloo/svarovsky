@@ -4,79 +4,80 @@
 
     <section>
         <h1>{{ $heading }}</h1>
-        Administrace se připravuje
-        <form class="hidden" action="{{ route('admin.partners.store') }}" method="post" enctype="multipart/form-data">
+
+        <form action="{{ route('admin.partners.store') }}" method="post" enctype="multipart/form-data">
             {!! csrf_field() !!}
 
 
-            <div class="form-group">
+            <div class="form-group clearfix">
+                <label>Banky</label>
+                <input class="form-control" type="file" name="banky">
+                @foreach($banky as $p)
+
+                    @if($p->image)
+                        <div style="position: relative;float:left;margin-right: 20px;height:80px">
+                            <div class="delete-partner"><a href="{{ route('admin.partners.delete', $p->id) }}"><i class="fa fa-times"></i></a></div>
+                            <img src="{{ $p->image }}" width="70px">
+                        </div>
+                    @else
+                        Fotka nepřiřazena
+                    @endif
+                @endforeach
+            </div>
+
+            <br />
+
+            <div class="form-group clearfix">
+                <label>Penze</label>
+                <input class="form-control" type="file" name="penze">
+                @foreach($penze as $p)
+
+                    @if($p->image)
+                        <div style="position: relative;float:left;margin-right: 20px;height:80px">
+                            <div class="delete-partner"><a href="{{ route('admin.partners.delete', $p->id) }}"><i class="fa fa-times"></i></a></div>
+                            <img src="{{ $p->image }}" width="70px">
+                        </div>
+                    @else
+                        Fotka nepřiřazena
+                    @endif
+                @endforeach
+            </div>
+
+            <br />
+
+            <div class="form-group clearfix">
                 <label>Pojištění</label>
                 <input class="form-control" type="file" name="pojisteni">
                 @foreach($pojisteni as $p)
-                    @if($p->image)<img src="/{{ $p->image }}" width="150px">@else Fotka nepřiřazena @endif
+
+                    @if($p->image)
+                        <div style="position: relative;float:left;margin-right: 20px;height:80px">
+                            <div class="delete-partner"><a href="{{ route('admin.partners.delete', $p->id) }}"><i class="fa fa-times"></i></a></div>
+                            <img src="{{ $p->image }}" width="70px">
+                        </div>
+                    @else
+                        Fotka nepřiřazena
+                    @endif
                 @endforeach
             </div>
 
             <br />
 
-            <div class="form-group">
-                <label>Investiční společnosti</label>
-                <input class="form-control" type="file" name="inv_spol">
-                @foreach($inv_spol as $p)
-                    @if($p->image)<img src="/{{ $p->image }}" width="150px">@else Fotka nepřiřazena @endif
-                @endforeach
-            </div>
-
-            <br />
-
-            <div class="form-group">
-                <label>Hypoteční úvěry</label>
-                <input class="form-control" type="file" name="hypoteka">
-                @foreach($hypoteka as $p)
-                    @if($p->image)<img src="/{{ $p->image }}" width="150px">@else Fotka nepřiřazena @endif
-                @endforeach
-            </div>
-
-            <br />
-
-            <div class="form-group">
+            <div class="form-group clearfix">
                 <label>Stavební spoření</label>
                 <input class="form-control" type="file" name="stavebni">
                 @foreach($stavebni as $p)
-                    @if($p->image)<img src="/{{ $p->image }}" width="150px">@else Fotka nepřiřazena @endif
+
+                    @if($p->image)
+                        <div style="position: relative;float:left;margin-right: 20px;height:80px">
+                            <div class="delete-partner"><a href="{{ route('admin.partners.delete', $p->id) }}"><i class="fa fa-times"></i></a></div>
+                            <img src="{{ $p->image }}" width="70px">
+                        </div>
+                    @else
+                        Fotka nepřiřazena
+                    @endif
                 @endforeach
             </div>
-
-            <br />
-
-            <div class="form-group">
-                <label>Úvěry fyzickým osobám</label>
-                <input class="form-control" type="file" name="uvery">
-                @foreach($uvery as $p)
-                    @if($p->image)<img src="/{{ $p->image }}" width="150px">@else Fotka nepřiřazena @endif
-                @endforeach
-            </div>
-
-            <br />
-
-            <div class="form-group">
-                <label>Doplňkové penzijní spoření</label>
-                <input class="form-control" type="file" name="penzijni">
-                @foreach($penzijni as $p)
-                    @if($p->image)<img src="/{{ $p->image }}" width="150px">@else Fotka nepřiřazena @endif
-                @endforeach
-            </div>
-
-            <br />
-
-            <div class="form-group">
-                <label>Nefinanční produkty</label>
-                <input class="form-control" type="file" name="nefinancni">
-                @foreach($nefinancni as $p)
-                    @if($p->image)<img src="/{{ $p->image }}" width="150px">@else Fotka nepřiřazena @endif
-                @endforeach
-            </div>
-
 
 
 
