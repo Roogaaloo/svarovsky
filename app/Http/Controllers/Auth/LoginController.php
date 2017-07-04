@@ -41,9 +41,9 @@ class LoginController extends Controller
     }
 
     public function logout(){
-        Auth::logout();
 
-        session()->flash('success', "Odhlášení proběhlo úspěšně");
+        Auth::logout();
+        session()->flash('success', "Odhlášení proběhlo úspěšně.");
 
         return Redirect::action('Auth\LoginController@login');
     }

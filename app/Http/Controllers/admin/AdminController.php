@@ -4,6 +4,8 @@ namespace App\Http\Controllers\admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
@@ -25,6 +27,31 @@ class AdminController extends Controller
         return redirect('/');
 
 
+    }
+
+    public function password()
+    {
+        return view('admin.template.reset');
+    }
+
+    public function reset(Request $request, $id)
+    {
+
+        if($request->password == $request->password_check) {
+
+            DB::table('users')
+                ->where('id', $id)
+                ->update([
+                    'password' => bcrypt($request->password),
+                ]);
+
+            session()->flash('success', "Heslo bylo změněno.");
+            Auth::logout();
+            return redirect('/admin');
+        }else{
+            session()->flash('error', "Hesla se neshodují.");
+            return redirect('/admin/reset');
+        }
     }
 
     /**

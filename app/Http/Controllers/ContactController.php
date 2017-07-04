@@ -35,6 +35,8 @@ class ContactController extends Controller
         return view('admin.contact.list', compact('heading', 'contact', 'home_text'));
     }
 
+
+
     /**
      * Show the form for creating a new resource.
      *

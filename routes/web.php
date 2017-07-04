@@ -55,7 +55,13 @@ Route::get('logout', ['as' => 'logout', 'uses' => 'Auth\LoginController@logout']
 Route::get('register', ['as' => 'register', 'uses' => 'HomeController@index']);
 
 
+
+
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
+
+
+    Route::get('reset', ['as' => 'admin.reset', 'uses' => 'admin\AdminController@password']);
+    Route::post('{id}/reset-password', ['as' => 'admin.resetPassword', 'uses' => 'admin\AdminController@reset']);
 
 
 

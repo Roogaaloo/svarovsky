@@ -9,4 +9,5 @@
     @endforeach
     <li class="@if($_SERVER['REQUEST_URI'] == '/admin/partneri') active @endif"><a href="/admin/partneri">Partneři</a></li>
     <li class="@if($_SERVER['REQUEST_URI'] == '/admin/banner') active @endif"><a href="/admin/banner">Banner</a></li>
+    <li class="@if($_SERVER['REQUEST_URI'] == '/admin/reset') active @endif"><a href="/admin/reset">Změna hesla</a></li>
 </ul>

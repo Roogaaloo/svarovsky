@@ -16,10 +16,6 @@
     <link href="https://fonts.googleapis.com/css?family=Raleway:200,300,400,500,600,700,800,900&amp;subset=latin-ext" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800&amp;subset=latin-ext" rel="stylesheet">
 
-    <link media="all" type="text/css" rel="stylesheet" href="/revolution/css/settings.css">
-    <link media="all" type="text/css" rel="stylesheet" href="/revolution/css/layers.css">
-    <link media="all" type="text/css" rel="stylesheet" href="/revolution/css/navigation.css">
-
     <link media="all" type="text/css" rel="stylesheet" href="/css/styles.css">
 
     <style>
@@ -42,6 +38,12 @@
 @if (Session::has('success'))
     <div class="alert alert-success">
         {{ Session::get('success') }}
+    </div>
+@endif
+
+@if (Session::has('error'))
+    <div class="alert alert-error">
+        {{ Session::get('error') }}
     </div>
 @endif
 

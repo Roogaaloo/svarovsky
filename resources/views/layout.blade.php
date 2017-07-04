@@ -40,12 +40,14 @@
 @if (Session::has('success'))
     <div class="alert alert-success">
         {{ Session::get('success') }}
+        <div class="alert-close"><i class="fa fa-times"></i></div>
     </div>
 @endif
 
 @if (Session::has('error'))
     <div class="alert alert-error">
         {{ Session::get('error') }}
+        <div class="alert-close"><i class="fa fa-times"></i></div>
     </div>
     <style>
         input:required[value=""]{
@@ -134,9 +136,12 @@
         if($('.alert').length !== 0){
             if($('.alert').html().length > 0){
 
-                $('.alert').animate({top: $('.alert').height()+23, opacity: '0.95'}, 600, 'swing').delay(2000).animate({top: '0px'},300, 'swing');
+                $('.alert').animate({top: $('.alert').height()+23, opacity: '0.95'}, 600, 'swing');
             }
         }
+        $('.alert-close').click(function(){
+            $('.alert').animate({top: '0px'},300, 'swing');
+        });
 
         $('.meeting-popup .option label').toggle(function(){
             $(this).css({background: '#87bc26', color: '#fff'});
