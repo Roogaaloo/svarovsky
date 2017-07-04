@@ -21,6 +21,10 @@ View::composer('layout', function($view){
     $view->with('contact', DB::table('contact')->first());
 });
 
+View::composer('partitials.footer_contact', function($view){
+    $view->with('contact', DB::table('contact')->first());
+});
+
 Route::get('/', ['as' => 'template.home', 'uses' => 'HomeController@index']);
 
 Route::post('/addMeeting', ['as' => 'contact.addMeeting', 'uses' => 'HomeController@addMeeting']);

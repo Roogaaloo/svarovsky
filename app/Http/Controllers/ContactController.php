@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\ContactAdmin;
 use App\Mail\ContactUser;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Validator;
 
 class ContactController extends Controller
 {
@@ -52,24 +53,38 @@ class ContactController extends Controller
      */
     public function store(Request $request)
     {
-        DB::table('forms')->insert([
-            'name' => $request->name,
-            'email' => $request->email,
-            'text' => $request->text,
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255',
+            'text' => 'required|max:255',
         ]);
 
-        $name = $request->name;
-        $email = $request->email;
-        $text = $request->text;
+        if($validator->fails()){
+            $request->session()->flash('error', "Prosím vyplňte požadovaná pole.");
+
+            return back()->withInput();
+        }else{
+            DB::table('forms')->insert([
+                'name' => $request->name,
+                'email' => $request->email,
+                'text' => $request->text,
+            ]);
+
+            $name = $request->name;
+            $email = $request->email;
+            $text = $request->text;
 
 
-        Mail::to('robert.galovic@seznam.cz')->send(new ContactAdmin($name, $email, $text));
+            Mail::to('robert.galovic@seznam.cz')->send(new ContactAdmin($name, $email, $text));
 
-        Mail::to($email)->send(new ContactUser($text));
+            Mail::to($email)->send(new ContactUser($text));
 
-        $request->session()->flash('success', "Děkuji. Vaše zpráva byla úspěšně odeslána. Budu Vás co nejdříve kontaktovat.");
+            $request->session()->flash('success', "Děkuji. Vaše zpráva byla úspěšně odeslána. Budu Vás co nejdříve kontaktovat.");
 
-        return back();
+            return back();
+        }
+
+
     }
 
     /**

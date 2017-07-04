@@ -54,6 +54,12 @@
         textarea:required:empty{
             border-color: #f31e1e;
         }
+        input.required[value=""]{
+            border-color: #f31e1e;
+        }
+        textarea.required:empty{
+            border-color: #f31e1e;
+        }
     </style>
 @endif
 

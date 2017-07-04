@@ -27,16 +27,16 @@
                         <div class="row">
                             <div class="form-group col-sm-6">
                                 <label>Jméno a příjmení</label>
-                                <input class="form-control" type="text" name="name" placeholder="Jméno a příjmení">
+                                <input class="form-control" type="text" name="name" placeholder="Jméno a příjmení" required>
                             </div>
                             <div class="form-group col-sm-6">
                                 <label>E-mail</label>
-                                <input class="form-control" type="email" name="email" placeholder="E-mail">
+                                <input class="form-control" type="email" name="email" placeholder="E-mail" required>
                             </div>
                             <div class="form-group">
                                 <div class="col-sm-12">
                                     <label>Zpráva</label>
-                                    <textarea class="form-control" rows="5" name="text" placeholder="Zpráva"></textarea>
+                                    <textarea class="form-control" rows="5" name="text" placeholder="Zpráva" required></textarea>
                                 </div>
                             </div>
                             <div class="form-group">
