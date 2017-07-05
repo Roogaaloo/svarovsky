@@ -5,9 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="">
+    <meta name="description" content="Nabízím Vám provotřídní služby v oblasti finančního poradenství a pojištění.">
     <meta name="keywords" content="finanční poradce, finanční poradenství, finance, pomoc s financemi, finanční pomoc">
     <meta name="author" content="Ing. Jiří Svarovský">
+    <meta name="robots" content="noindex,nofollow">
 
 
     <link rel="apple-touch-icon" sizes="57x57" href="http://www.svarovskyjiri.cz/img/favicon.ico">

@@ -6,6 +6,8 @@
 
     @include('partitials.slider')
 
+    <h1 class="hidden">Ing. Jiří Svarovský</h1>
+
     @if($home_text)
         <section  class="padding shadow-background home-text-mobile">
             <div class="container">
