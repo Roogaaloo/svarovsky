@@ -14,6 +14,11 @@ class AdminController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    /*
+     * All website designed and programed by Robert Galovič.
+     */
+
     public function index()
     {
         return view('admin.template.home');

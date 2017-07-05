@@ -118,9 +118,13 @@ class BlogController extends Controller
         $article = DB::table('articles')->where('status', 1)->where('href', $href)->first();
         $articles = DB::table('articles')->where('status', 1)->get();
 
+        if($article == null){
+            return Redirect::action('HomeController@error');
+        }else{
+            return view('blog.detail', compact('article', 'articles'));
+        }
 
 
-        return view('blog.detail', compact('article', 'articles'));
     }
 
     /**

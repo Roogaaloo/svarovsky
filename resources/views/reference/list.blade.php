@@ -42,23 +42,24 @@
                         </div>
                     </div>
 
-                <?php $i = 0; ?>
+                    <?php $i = 0; ?>
 
-                @foreach($references as $reference)
+                    @foreach($references as $reference)
 
-                            <div class="col-sm-12 col-md-6 reference-card">
-                                @if($reference->date)<div class="reference-date">{{ $reference->date }}</div>@endif
-                                <div class="reference-icon">
-                                    <i class="fa fa-user-circle-o"></i>
+                                <div class="col-sm-12 col-md-6 reference-card">
+                                    @if($reference->date)<div class="reference-date">{{ $reference->date }}</div>@endif
+                                    <div class="reference-icon">
+                                        <i class="fa fa-user-circle-o"></i>
+                                    </div>
+                                    <div class="reference-content">
+                                        <h2>{{ $reference->name }}</h2>
+                                        <p>"{{ $reference->text }}"</p>
+                                    </div>
                                 </div>
-                                <div class="reference-content">
-                                    <h2>{{ $reference->name }}</h2>
-                                    <p>"{{ $reference->text }}"</p>
-                                </div>
-                            </div>
-                        @if($i == 0 or $i%2 == 0)</div><div class="row reference-row">@endif
-                    <?php $i++; ?>
-                @endforeach
+                            @if($i == 0 or $i%2 == 0)</div><div class="row reference-row">@endif
+                        <?php $i++; ?>
+                    @endforeach
+                </div>
             </div>
         </section>
 

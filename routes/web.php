@@ -27,6 +27,8 @@ View::composer('partitials.footer_contact', function($view){
 
 Route::get('/', ['as' => 'template.home', 'uses' => 'HomeController@index']);
 
+Route::get('/stranka-nenalezena', ['as' => '404', 'uses' => 'HomeController@error']);
+
 Route::post('/addMeeting', ['as' => 'contact.addMeeting', 'uses' => 'HomeController@addMeeting']);
 
 Route::get('/proc-se-mnou', ['as' => 'template.about', 'uses' => 'AboutController@index']);

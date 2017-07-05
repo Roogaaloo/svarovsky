@@ -18,6 +18,10 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    /*
+     * All website designed and programed by Robert Galovič.
+     */
+
     public function index()
     {
 
@@ -30,6 +34,13 @@ class HomeController extends Controller
 
 
        return view('template.home', compact('categories','home_text', 'articles', 'references', 'partners', 'banners'));
+    }
+
+    public function error()
+    {
+       $heading = 'Stránka, kterou hledáte, nebyla nalezena!';
+
+        return view('error.404', compact('heading'));
     }
 
     /**
@@ -48,13 +59,13 @@ class HomeController extends Controller
 
 
         if($validator->fails()){
-            $request->session()->flash('error', "Prosím vyplňte požadovaná pole.");
+            $request->session()->flash('error_meeting', "Prosím vyplňte požadovaná pole.");
 
             return back()->withInput();
         }
 
         if(!$request->agree){
-            $request->session()->flash('error', "Musíte souhlasit se zpracováním osobních údajů.");
+            $request->session()->flash('error_meeting', "Musíte souhlasit se zpracováním osobních údajů.");
 
             return back()->withInput();
         }

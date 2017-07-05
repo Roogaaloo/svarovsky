@@ -26,9 +26,13 @@ class CategoryController extends Controller
 
         $products = DB::table('products')->where('status', 1)->where('category', $href)->get();
 
+        if($category == null){
+            return Redirect::action('HomeController@error');
+        }else{
+            return view('categories.detail', compact('category', 'products'));
+        }
 
 
-        return view('categories.detail', compact('category', 'products'));
     }
 
     public function edit($id){

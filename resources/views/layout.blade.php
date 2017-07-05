@@ -1,13 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="cs">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="Svarovsky">
-    <meta name="author" content="Robert">
-    <link rel="icon" href="../../favicon.ico">
+    <meta name="description" content="">
+    <meta name="keywords" content="finanční poradce, finanční poradenství, finance, pomoc s financemi, finanční pomoc">
+    <meta name="author" content="Ing. Jiří Svarovský">
+
+
+    <link rel="apple-touch-icon" sizes="57x57" href="http://www.svarovskyjiri.cz/img/favicon.ico">
+    <link rel="apple-touch-icon" sizes="60x60" href="http://www.svarovskyjiri.cz/img/favicon.ico">
+    <link rel="apple-touch-icon" sizes="72x72" href="http://www.svarovskyjiri.cz/img/favicon.ico">
+    <link rel="apple-touch-icon" sizes="76x76" href="http://www.svarovskyjiri.cz/img/favicon.ico">
+    <link rel="apple-touch-icon" sizes="114x114" href="http://www.svarovskyjiri.cz/img/favicon.ico">
+    <link rel="apple-touch-icon" sizes="120x120" href="http://www.svarovskyjiri.cz/img/favicon.ico">
+    <link rel="apple-touch-icon" sizes="144x144" href="http://www.svarovskyjiri.cz/img/favicon.ico">
+    <link rel="apple-touch-icon" sizes="152x152" href="http://www.svarovskyjiri.cz/img/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="http://www.svarovskyjiri.cz/img/favicon.ico">
+    <link rel="icon" type="image/png" href="http://www.svarovskyjiri.cz/img/favicon.ico" sizes="32x32">
+    <link rel="icon" type="image/png" href="http://www.svarovskyjiri.cz/img/favicon.ico" sizes="192x192">
+    <link rel="icon" type="image/png" href="http://www.svarovskyjiri.cz/img/favicon.ico" sizes="96x96">
+    <link rel="icon" type="image/png" href="http://www.svarovskyjiri.cz/img/favicon.ico" sizes="16x16">
+    <link rel="manifest" href="http://www.svarovskyjiri.cz/img/favicon.ico">
+    <link rel="mask-icon" href="http://www.svarovskyjiri.cz/img/favicon.ico" color="#87bc26">
+    <link rel="shortcut icon" href="http://www.svarovskyjiri.cz/img/favicon.ico" type="image/x-icon">
+
 
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -25,7 +44,23 @@
 
     <link media="all" type="text/css" rel="stylesheet" href="/css/styles.css">
 
-    <title>Svarovsky</title>
+    <title>Ing. Jiří Svarovský | Finanční poradce</title>
+
+    @if($_SERVER['REQUEST_URI'] == '/kontakt')
+        <style>
+            main{
+                padding-top: 0px;
+            }
+        </style>
+    @else
+        <style>
+            footer{
+                margin-top: 50px;
+            }
+        </style>
+    @endif
+
+
   </head>
 <body>
 
@@ -33,7 +68,7 @@
 <div class="meeting-slide">
     <i class="fa fa-handshake-o"></i>
     <div class="meeting-slide-title">
-        Sjednat schůzku
+        Sjednat<br />schůzku
     </div>
 </div>
 
@@ -47,6 +82,27 @@
 @if (Session::has('error'))
     <div class="alert alert-error">
         {{ Session::get('error') }}
+        <div class="alert-close"><i class="fa fa-times"></i></div>
+    </div>
+    <style>
+        input:required[value=""]{
+            border-color: #f31e1e;
+        }
+        textarea:required:empty{
+            border-color: #f31e1e;
+        }
+        input.required[value=""]{
+            border-color: #f31e1e;
+        }
+        textarea.required:empty{
+            border-color: #f31e1e;
+        }
+    </style>
+@endif
+
+@if (Session::has('error_meeting'))
+    <div class="alert alert-error">
+        {{ Session::get('error_meeting') }}
         <div class="alert-close"><i class="fa fa-times"></i></div>
     </div>
     <style>
@@ -193,13 +249,15 @@
 
 
     $(window).scroll(function () {
-      /*  if($(window).scrollTop() > 350){
-            $('.meeting-slide').css('right','-300px');
-
-
+        if($(window).scrollTop() > 350){
+            $('.meeting-slide-title').fadeOut(0);
+            $('.meeting-slide i.fa').fadeIn(0);
+            $('.meeting-slide').attr('style','width: 125px;right:-55px;padding: 15px 8px 8px');
         }else{
             $('.meeting-slide').attr('style','');
-        }*/
+            $('.meeting-slide-title').fadeIn(0);
+            $('.meeting-slide i.fa').fadeOut(0);
+        }
 
         if($(window).scrollTop() > 10){
             $('.navbar-inverse .navbar-nav>li>a').addClass('menu-padding');
@@ -210,6 +268,15 @@
         }
     });
 </script>
+
+@if (Session::has('error_meeting'))
+    <script style="text/javascript">
+        $(document).ready(function(){
+            $('.meeting-popup').fadeIn(300);
+            $('body').css('overflow-y','hidden');
+        });
+    </script>
+@endif
 
 <script type="text/javascript">
     function initMap() {

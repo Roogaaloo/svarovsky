@@ -4,11 +4,7 @@
 
 @section('content')
 
-    <style>
-        main{
-            padding-top: 0px;
-        }
-    </style>
+
 
     @include('partitials.google_map')
     @include('partitials.footer_contact')

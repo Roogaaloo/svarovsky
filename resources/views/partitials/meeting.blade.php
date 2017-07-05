@@ -39,7 +39,7 @@
                         </div>
                         <div class="form-group">
                             <div class="col-md-6 option">
-                                <label for="clean"><i class="fa fa-file-text"></i> Chci udělat pořádek ve smlouvách</label>
+                                <label for="clean"><i class="fa fa-stack-overflow"></i> Chci pořádek ve smlouvách</label>
                                 <input type="checkbox" id="clean" class="form-control" name="clean" value="Chci udělat pořádek ve smlouvách">
                             </div>
                         </div>

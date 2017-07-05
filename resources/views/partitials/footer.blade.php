@@ -2,12 +2,6 @@
 <footer>
     @if($_SERVER['REQUEST_URI'] != '/kontakt')
         @include('partitials.footer_contact')
-    @else
-        <style>
-            footer{
-                margin-top: 50px;
-            }
-        </style>
     @endif
     <div class="container">
         <div class="row">

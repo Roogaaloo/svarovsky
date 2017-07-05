@@ -6,6 +6,28 @@ body{
     color: #333;
     background: #f3f3f3;
 }
+
+::-webkit-scrollbar{
+    width:10px;
+    background-color: transparent;
+}
+::-webkit-scrollbar-button{
+    background:#ddd;
+    -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.4);
+}
+::-webkit-scrollbar-track{
+    -webkit-box-shadow: inset 0 0 15px rgba(0,0,0,0.1);
+    background-color: transparent;
+}
+::-webkit-scrollbar-track-piece{
+    background:transparent;
+}
+::-webkit-scrollbar-thumb{
+    background:#ddd;
+    -webkit-box-shadow: inset 0 0 6px rgba(90,140,20,0.4);
+    border-radius: 10px;
+}
+
 .blog-date{
     color: #888;
     margin-top: -10px;
@@ -22,7 +44,7 @@ body{
     right: 0px;
     left: 0px;
     opacity: 0;
-    z-index: 9999;
+    z-index: 9999999;
     border-radius: 0px;
     padding: 12px;
     font-size: 18px;
@@ -93,14 +115,31 @@ body{
 .meeting-slide{
     position: fixed;
     display: block;
-    right: -210px;
-    top: 20%;
-    width: 300px;
+    right: 0px;
+    top: 15%;
+    width: 110px;
+    text-align: center;
     background: #fff;
     font-size: 23px;
     z-index: 999;
-    padding: 23px 20px 15px;
+    padding: 15px 0px 15px 0px;
     cursor: pointer;
+    transition: 0.3s ease;
+    border: 1px solid #87bc26;
+    border-right: none;
+}
+.meeting-slide:hover{
+    background: #87bc26;
+    color: #fff;
+}
+.meeting-slide:hover i.fa{
+    color: #fff;
+}
+.meeting-slide-title{
+    line-height: 24px;
+}
+.meeting-slide i.fa{
+    display: none;
     transition: 0.3s ease;
 }
 .meeting-slide .fa{
@@ -110,9 +149,6 @@ body{
     float: left;
     margin-right: 20px;
     margin-top: -4px;
-}
-.meeting-slide:hover{
-    right: 0px;
 }
 .page-loader{
     display:block;
@@ -292,11 +328,11 @@ a:hover{
 .btn-more{
     margin-top: 30px;
 }
-span.glyphicon{
+i.fa-sticky-note-o{
     transition: 0.3s ease;
-}
-span.glyphicon:hover{
-    color: #87bc26;
+    color: #444;
+    position: relative;
+    top:-10px;
 }
 .hp-article{
     padding: 20px 40px;
@@ -306,7 +342,7 @@ span.glyphicon:hover{
     min-height: 300px;
     cursor: pointer;
 }
-.hp-article:hover span.glyphicon{
+.hp-article:hover i.fa-sticky-note-o{
     color: #87bc26;
 }
 .hp-article:hover a.btn{
@@ -415,6 +451,9 @@ textarea{
     font-style: italic;
 }
 #home-text .text-about{
+    padding:2px 60px;
+}
+#home-text-mobile .text-about{
     padding:2px 60px;
 }
 #footer-contact{
@@ -629,6 +668,9 @@ footer>.container{
     #home-text .text-about {
         padding: 2px 15px;
     }
+    #home-text-mobile .text-about {
+        padding: 2px 15px;
+    }
     .home-text-mobile .col-sm-6:first-child{
         display: none;
     }
@@ -676,6 +718,9 @@ footer>.container{
         width: 100%;
     }
     #home-text{
+        text-align: center;
+    }
+    #home-text-mobile{
         text-align: center;
     }
     .category-card{
@@ -734,7 +779,9 @@ footer>.container{
     #home-text{
         padding-top: 10px;
     }
-
+    #home-text-mobile{
+        padding-top: 10px;
+    }
     .reference-content h2 {
         font-size: 20px;
     }

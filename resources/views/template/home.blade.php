@@ -7,7 +7,7 @@
     @include('partitials.slider')
 
     @if($home_text)
-        <section id="home-text" class="padding shadow-background home-text-mobile">
+        <section  class="padding shadow-background home-text-mobile">
             <div class="container">
                 <div class="row">
                     <div class="col-sm-6" style="background-image:url({{ $home_text->media }});background-size: cover;background-position: center center;height:350px;">
@@ -15,7 +15,7 @@
                     <div class="col-sm-6 text-about">
                         @if($home_text->heading)<h2>{{ $home_text->heading }}</h2>@endif
                         @if($home_text->text){!! $home_text->text !!}@endif<br />
-                        <a herf="{{ route('template.about') }}" class="btn">Více</a>
+                        <a href="{{ route('template.about') }}" class="btn">Více</a>
                     </div>
                 </div>
             </div>
@@ -88,7 +88,7 @@
                     @foreach($articles as $article)
                         <div class="col-sm-5 hp-article" onclick="location.href='{{ route('blog.detail', $article->href) }}'">
                             <div class="blog-icon">
-                                <span class="glyphicon glyphicon-pencil"></span>
+                                <i class="fa fa-sticky-note-o"></i>
                             </div>
                             <div class="blog-content">
                                 <h3>{{ $article->title }}</h3>
