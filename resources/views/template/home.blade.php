@@ -12,7 +12,7 @@
         <section  class="padding shadow-background home-text-mobile">
             <div class="container">
                 <div class="row">
-                    <div class="col-sm-6" style="background-image:url({{ $home_text->media }});background-size: cover;background-position: center center;height:350px;">
+                    <div class="col-sm-6 photo-hp" style="background-image:url({{ $home_text->media }});">
                     </div>
                     <div class="col-sm-6 text-about">
                         @if($home_text->heading)<h2>{{ $home_text->heading }}</h2>@endif
@@ -51,7 +51,7 @@
         <section id="home-text" class="padding shadow-background home-text-desktop">
             <div class="container">
                 <div class="row">
-                    <div class="col-sm-6" style="background-image:url({{ $home_text->media }});background-size: cover;background-position: center center;height:350px;">
+                    <div class="col-sm-6 photo-hp" style="background-image:url({{ $home_text->media }});">
                     </div>
                     <div class="col-sm-6 text-about">
                         @if($home_text->heading)<h2>{{ $home_text->heading }}</h2>@endif
@@ -117,7 +117,7 @@
                 <div class="row">
                     @foreach($partners as $partner)
                         @if($a < 6)
-                            <div class="col-xs-3 col-sm-2 text-center partner-item">
+                            <div class="col-xs-2 col-sm-3 col-md-2 text-center partner-item">
                                 <img src="{{ $partner->image }}" alt="{{ $partner->name }}" class="img-responsive">
                             </div>
                             <?php $a++; ?>
@@ -134,6 +134,26 @@
 
     @endif
 
+@endsection
+
+@section('scripts')
+    <script type="text/javascript">
+        jQuery(document).ready(function() {
+            jQuery("#slider1").revolution({
+                sliderType: "normal",
+                sliderLayout: "fullwidth",
+                delay: 9000,
+                autoHeight: "on",
+                minHeight: 200,
+                responsiveLevels: [1240, 1025, 778, 480],
+                navigation: {
+                    arrows: {enable: true}
+                },
+                gridwidth: 1920,
+                gridheight: [800, 800, 1100, 1800],
+            }).show(500);
+        });
+    </script>
 @endsection
 
 

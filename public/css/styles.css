@@ -6,7 +6,11 @@ body{
     color: #333;
     background: #f3f3f3;
 }
-
+.photo-hp{
+    background-size: cover;
+    background-position: center center;
+    height:350px;
+}
 ::-webkit-scrollbar{
     width:10px;
     background-color: transparent;
@@ -453,7 +457,7 @@ textarea{
 #home-text .text-about{
     padding:2px 60px;
 }
-#home-text-mobile .text-about{
+.home-text-mobile .text-about{
     padding:2px 60px;
 }
 #footer-contact{
@@ -668,7 +672,7 @@ footer>.container{
     #home-text .text-about {
         padding: 2px 15px;
     }
-    #home-text-mobile .text-about {
+    .home-text-mobile .text-about {
         padding: 2px 15px;
     }
     .home-text-mobile .col-sm-6:first-child{
@@ -720,7 +724,7 @@ footer>.container{
     #home-text{
         text-align: center;
     }
-    #home-text-mobile{
+    .home-text-mobile{
         text-align: center;
     }
     .category-card{
@@ -736,7 +740,7 @@ footer>.container{
         padding: 8px 30px;
     }
     .partner-item{
-        width: 50%;
+        width: 33.33333%;
     }
     .about-partners{
         width: 33.3333%;
@@ -779,7 +783,7 @@ footer>.container{
     #home-text{
         padding-top: 10px;
     }
-    #home-text-mobile{
+    .home-text-mobile{
         padding-top: 10px;
     }
     .reference-content h2 {
