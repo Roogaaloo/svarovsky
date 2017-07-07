@@ -552,7 +552,14 @@ footer>.container{
     opacity: 1;
     transform: scale(1);
 }
-
+.reference-add{
+    box-shadow: inset 0px 0px 5px rgba(0,0,0,0.3);
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    background: #fdfdfd !important;
+    margin-bottom: 20px;
+}
 @media (min-width: 992px){
     .reference-item{
         padding: 0px 230px;

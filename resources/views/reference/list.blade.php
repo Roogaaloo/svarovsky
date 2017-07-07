@@ -13,7 +13,7 @@
                     </div>
                 </div>
                 <div class="row reference-row">
-                    <div class="col-sm-12 col-md-6 reference-card">
+                    <div class="col-sm-12 reference-card reference-add">
                         <form action="{{ route('reference.addComment') }}" method="post">
 
                             {!! csrf_field() !!}
@@ -41,11 +41,12 @@
                             <small>Všechna pole jsou povinná. E-mail nebude zveřejněn.</small>
                         </div>
                     </div>
+                </div>
 
                     <?php $i = 0; ?>
 
                     @foreach($references as $reference)
-
+                            @if($i == 0 or $i%2 == 0)<div class="row reference-row">@endif
                                 <div class="col-sm-12 col-md-6 reference-card">
                                     @if($reference->date)<div class="reference-date">{{ $reference->date }}</div>@endif
                                     <div class="reference-icon">
@@ -56,7 +57,7 @@
                                         <p>"{{ $reference->text }}"</p>
                                     </div>
                                 </div>
-                            @if($i == 0 or $i%2 == 0)</div><div class="row reference-row">@endif
+                            @if($i == 1 or $i%2 != 0)</div>@endif
                         <?php $i++; ?>
                     @endforeach
                 </div>
