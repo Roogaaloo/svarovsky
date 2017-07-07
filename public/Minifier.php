@@ -118,7 +118,7 @@ class Minifier {
         }
         fwrite(fopen("css/style$version.css", "w"), $this->css);
 		fwrite(fopen("js/script$version.js", "w"), $this->js);
-        echo "<link href='css/style$version.css' rel='stylesheet'>";
+        echo "<link href='/css/style$version.css' rel='stylesheet'>";
     //    echo "<script type='text/javascript' src='cache/script$version.js'></script>"; 
     }
     public function clear() {  // delete all files inside cache folder

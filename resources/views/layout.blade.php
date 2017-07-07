@@ -178,7 +178,7 @@
 <script type="text/javascript" src="revolution/js/jquery.themepunch.revolution.min.js?rev=5.0"></script>
         <!-- Latest compiled and minified JavaScript -->
 
-<script type="text/javascript" src="js/scripts.js"></script>
+<script type="text/javascript" src="/js/scripts.js"></script>
 
 @if (Session::has('error_meeting'))
     <script style="text/javascript">
@@ -190,10 +190,64 @@
 @endif
 
 @yield('scripts')
+<script style="text/javascript">
+    $(document).ready(function(){
+        if($(window).height() > $('body').height()){
+            $('footer').css('position','absolute');
+            $('footer').css('width','100%');
+            $('footer').css('bottom','0px');
+        }
+        $('.meeting-slide, .btn-meeting').click(function(){
+            $('.meeting-popup').fadeIn(300);
+            $('body').css('overflow-y','hidden');
+        });
+
+        $('.close').click(function(){
+            $('.meeting-popup').fadeOut(300);
+            $('body').css('overflow-y','auto');
+        });
+        if($('.alert').length !== 0){
+            if($('.alert').html().length > 0){
+
+                $('.alert').animate({top: $('.alert').height()+23, opacity: '0.95'}, 600, 'swing');
+            }
+        }
+        $('.alert-close').click(function(){
+            $('.alert').animate({top: '0px'},300, 'swing');
+        });
+    });
+
+    $(window).one('resize', function(){
+        if($(window).width() > 767) {
+            var maxHeight = -1;
+            $(this).find("#categories .category-card").each(function () {
+                if ($(this).height() > maxHeight) {
+                    maxHeight = $(this).height();
+                }
+            });
+            $('#categories .category-card').height(maxHeight);
+        }
+    });
+
+    $(window).resize(function(){
+        if($(window).width() > 767) {
+            var maxHeight = -1;
+            $('#categories .category-card').each(function () {
+                if ($(this).height() > maxHeight) {
+                    maxHeight = $(this).height();
+                }
+                $('#categories .category-card').height(maxHeight);
+            });
+        }
+    });
+
+
+</script>
 
 
 
-<script async defer type="text/javascript" src="js/last-scripts.js"></script>
+
+<script async defer type="text/javascript" src="/js/last-scripts.js"></script>
 
 </body>
 </html>
