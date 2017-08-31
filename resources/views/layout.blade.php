@@ -8,8 +8,7 @@
     <meta name="description" content="Nabízím Vám provotřídní služby v oblasti finančního poradenství a pojištění.">
     <meta name="keywords" content="finanční poradce, finanční poradenství, finance, pomoc s financemi, finanční pomoc">
     <meta name="author" content="Ing. Jiří Svarovský">
-    <meta name="robots" content="noindex,nofollow">
-
+    <meta name="robots" content="index,follow">
 
     <link rel="apple-touch-icon" sizes="57x57" href="http://www.svarovskyjiri.cz/img/favicon.ico">
     <link rel="apple-touch-icon" sizes="60x60" href="http://www.svarovskyjiri.cz/img/favicon.ico">
@@ -28,24 +27,8 @@
     <link rel="mask-icon" href="http://www.svarovskyjiri.cz/img/favicon.ico" color="#87bc26">
     <link rel="shortcut icon" href="http://www.svarovskyjiri.cz/img/favicon.ico" type="image/x-icon">
 
-
-    <!-- Latest compiled and minified CSS -->
-   {{-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">--}}
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-   {{-- <link href="https://fonts.googleapis.com/css?family=Raleway:200,300,400,500,600,700,800,900&amp;subset=latin-ext" rel="stylesheet">--}}
-   {{-- <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800&amp;subset=latin-ext" rel="stylesheet">--}}
-
-
-    <link media="all" type="text/css" rel="stylesheet" href="/revolution/css/settings.css">
-{{--    <link media="all" type="text/css" rel="stylesheet" href="/revolution/css/layers.css">--}}
-    <link media="all" type="text/css" rel="stylesheet" href="/revolution/css/navigation.css">
-
- {{--   <link rel="stylesheet" type="text/css" href="/slick/slick.css"/>--}}
-
-    <link rel="stylesheet" type="text/css" href="/slick/slick-theme.css"/>
-
- {{--   <link media="all" type="text/css" rel="stylesheet" href="/css/styles.css">--}}
-
+    @yield('styles')
 
 
     <?php require_once "Minifier.php";
@@ -66,9 +49,7 @@
     $minifier->render();
 
     ?>
-
-    <title>Ing. Jiří Svarovský | Finanční poradce</title>
-
+    <title>@if(isset($title)) {{ $title }} @else Ing. Jiří Svarovský | Finanční poradce @endif</title>
     @if($_SERVER['REQUEST_URI'] == '/kontakt')
         <style>
             main{
@@ -84,18 +65,25 @@
         </style>
     @endif
 
+    <script>
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+                m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-92984067-2', 'auto');
+        ga('send', 'pageview');
+
+    </script>
 
   </head>
 <body>
-
-
 <div class="meeting-slide">
     <i class="fa fa-handshake-o"></i>
     <div class="meeting-slide-title">
         Sjednat<br />schůzku
     </div>
 </div>
-
 @if (Session::has('success'))
     <div class="alert alert-success">
         {{ Session::get('success') }}
@@ -144,44 +132,29 @@
         }
     </style>
 @endif
-
-
-
 @include('partitials.meeting')
-
 <div class="page-loader">
     <div class="loader"><div class="loader-inner ball-clip-rotate-multiple"><div></div><div></div></div></div>
     <div class="loader2"><div class="loader-inner ball-clip-rotate-multiple"><div></div><div></div></div></div>
     <div class="loader3"><div class="loader-inner ball-clip-rotate-multiple"><div></div><div></div></div></div>
 </div>
-
-
 @include('partitials.header')
-
 <main>
     @yield('content')
 </main>
-
-
 @include('partitials.footer')
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-
-
 <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-
-
 <script type="text/javascript" src="slick/slick.min.js"></script>
         <!-- RS5.0 Core JS Files -->
 <script type="text/javascript" src="revolution/js/jquery.themepunch.tools.min.js?rev=5.0"></script>
 <script type="text/javascript" src="revolution/js/jquery.themepunch.revolution.min.js?rev=5.0"></script>
         <!-- Latest compiled and minified JavaScript -->
-
 <script type="text/javascript" src="/js/scripts.js"></script>
 
 @if (Session::has('error_meeting'))
-    <script style="text/javascript">
+    <script type="text/javascript">
         $(document).ready(function(){
             $('.meeting-popup').fadeIn(300);
             $('body').css('overflow-y','hidden');
@@ -190,8 +163,17 @@
 @endif
 
 @yield('scripts')
-<script style="text/javascript">
+<script type="text/javascript">
     $(document).ready(function(){
+
+        $('.meeting-popup .option label').toggle(function(){
+            $(this).css({background: '#87bc26', color: '#fff'});
+            $(this).next('input[type="checkbox"]').prop('checked', true);
+        }, function () {
+            $(this).attr('style','');
+            $(this).next('input[type="checkbox"]').prop('checked', false);
+        });
+
         if($(window).height() > $('body').height()){
             $('footer').css('position','absolute');
             $('footer').css('width','100%');
@@ -243,11 +225,6 @@
 
 
 </script>
-
-
-
-
 <script async defer type="text/javascript" src="/js/last-scripts.js"></script>
-
 </body>
 </html>

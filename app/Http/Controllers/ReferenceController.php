@@ -14,9 +14,11 @@ class ReferenceController extends Controller
 {
     public function index()
     {
+        $title = 'Reference';
+
         $references = DB::table('references')->where('status', 1)->orderBy('created_at', 'desc')->get();
 
-        return view('reference.list', compact('references'));
+        return view('reference.list', compact('references', 'title'));
     }
 
     public function indexAdmin()
@@ -103,7 +105,7 @@ class ReferenceController extends Controller
 
         $name = $request->name;
 
-        Mail::to('robert.galovic@seznam.cz')->send(new Reference($name));
+        Mail::to('svarovsky.jiri@gmail.com')->send(new Reference($name));
 
         $request->session()->flash('success', "Děkuji. Recenze byla přijata ke schválení.");
 

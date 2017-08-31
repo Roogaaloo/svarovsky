@@ -1,4 +1,3 @@
-
 <footer>
     @if($_SERVER['REQUEST_URI'] != '/kontakt')
         @include('partitials.footer_contact')

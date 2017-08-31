@@ -89,7 +89,7 @@ class HomeController extends Controller
         $email = $request->email;
         $text = $request->text;
 
-        Mail::to('robert.galovic@seznam.cz')->send(new MeetingAdmin($name, $email, $text, $local, $phone, $productss));
+        Mail::to('svarovsky.jiri@gmail.com')->send(new MeetingAdmin($name, $email, $text, $local, $phone, $productss));
 
         Mail::to($email)->send(new MeetingUser($text));
 

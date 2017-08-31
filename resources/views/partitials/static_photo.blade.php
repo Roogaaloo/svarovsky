@@ -1,3 +1,1 @@
-<div class="static-photo">
-
-</div>
+<div class="static-photo"></div>

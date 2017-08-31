@@ -10,9 +10,11 @@ use Illuminate\Support\Facades\Redirect;
 class CategoryController extends Controller
 {
     public function index(){
+
+        $title = 'Produkty';
                 $categories = Category::all();
 
-        return view('categories.list', compact('categories'));
+        return view('categories.list', compact('categories', 'title'));
     }
     public function indexAdmin(){
                 $categories = Category::all();
@@ -22,14 +24,19 @@ class CategoryController extends Controller
     }
 
     public function show($href){
+
+
+
         $category = DB::table('categories')->where('status', 1)->where('href', $href)->first();
 
         $products = DB::table('products')->where('status', 1)->where('category', $href)->get();
 
+        $title = $category->name;
+
         if($category == null){
             return Redirect::action('HomeController@error');
         }else{
-            return view('categories.detail', compact('category', 'products'));
+            return view('categories.detail', compact('category', 'products', 'title'));
         }
 
 

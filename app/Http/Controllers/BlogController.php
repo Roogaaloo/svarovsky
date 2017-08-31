@@ -11,9 +11,11 @@ class BlogController extends Controller
 {
     public function index()
     {
+        $title = 'Blog';
+
         $articles = DB::table('articles')->where('status', 1)->orderBy('publish_at', 'desc')->get();
 
-        return view('blog.list', compact('articles'));
+        return view('blog.list', compact('articles', 'title'));
     }
 
     public function indexAdmin()
@@ -116,12 +118,15 @@ class BlogController extends Controller
     {
 
         $article = DB::table('articles')->where('status', 1)->where('href', $href)->first();
+
+        $title = $article->title;
+
         $articles = DB::table('articles')->where('status', 1)->get();
 
         if($article == null){
             return Redirect::action('HomeController@error');
         }else{
-            return view('blog.detail', compact('article', 'articles'));
+            return view('blog.detail', compact('article', 'articles', 'title'));
         }
 
 

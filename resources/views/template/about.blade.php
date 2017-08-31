@@ -33,7 +33,7 @@
                     <div class="col-sm-12 text-center">
                         <br />
                         <br />
-                        <h2>Parneři</h2>
+                        <h2>Partneři</h2>
                     </div>
                 </div>
 

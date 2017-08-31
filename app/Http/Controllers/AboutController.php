@@ -15,9 +15,14 @@ class AboutController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
+
+
         $about = DB::table('about')->first();
+
+        $title = 'Proč se mnou';
 
         $partners = DB::table('partners')->where('status', 1)->get();
 
@@ -31,7 +36,7 @@ class AboutController extends Controller
             }
          }
 
-        return view('template.about', compact('about','partners', 'category'));
+        return view('template.about', compact('about','partners', 'category', 'title'));
     }
 
     public function indexAdmin()

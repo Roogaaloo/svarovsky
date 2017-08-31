@@ -6,13 +6,7 @@
             dots: true,
         });
 
-        $('.meeting-popup .option label').toggle(function(){
-            $(this).css({background: '#87bc26', color: '#fff'});
-            $(this).next('input[type="checkbox"]').prop('checked', true);
-        }, function () {
-            $(this).attr('style','');
-            $(this).next('input[type="checkbox"]').prop('checked', false);
-        });
+
 
 
         if($(window).width() > 767) {

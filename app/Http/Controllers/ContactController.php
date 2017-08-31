@@ -19,7 +19,9 @@ class ContactController extends Controller
      */
     public function index()
     {
-        return view('template.contact');
+       $title = 'Kontakt | Ing. Jiří Svarovský';
+
+        return view('template.contact', compact('title'));
     }
 
     public function indexAdmin()
@@ -77,7 +79,7 @@ class ContactController extends Controller
             $text = $request->text;
 
 
-            Mail::to('robert.galovic@seznam.cz')->send(new ContactAdmin($name, $email, $text));
+            Mail::to('svarovsky.jiri@gmail.com')->send(new ContactAdmin($name, $email, $text));
 
             Mail::to($email)->send(new ContactUser($text));
 

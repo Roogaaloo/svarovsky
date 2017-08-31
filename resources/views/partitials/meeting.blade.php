@@ -3,7 +3,6 @@
         <div class="row">
             <div class="col-sm-8 col-sm-offset-2 meeting-popup-body">
                 <div class="close">x</div>
-
                 <form method="post" action="{{ route('contact.addMeeting') }}">
                     {!! csrf_field() !!}
                     <div class="row">
@@ -13,7 +12,7 @@
                         </div>
                         <div class="form-group col-sm-6">
                             <label>Lokalita</label>
-                            <input class="form-control" type="text" name="local" placeholder="Brno, Sránská 5" value="{{ old('locale') }}">
+                            <input class="form-control" type="text" name="local" placeholder="Brno, Sránská 5" value="{{ old('local') }}">
                         </div>
                         <div class="form-group col-sm-6">
                             <label>Telefon</label>
@@ -23,8 +22,6 @@
                             <label>E-mail</label>
                             <input class="form-control" type="email" name="email" placeholder="E-mail" value="{{ old('email') }}" required>
                         </div>
-
-
                         <div class="form-group">
                             <div class="col-md-6 option">
                                 <label for="bydleni"><i class="fa fa-home"></i> Chci řešit bydlení</label>
@@ -61,7 +58,6 @@
                                 <input type="checkbox" id="analyse" class="form-control" name="analyse" value="Chci komplexní finanční analýzu">
                             </div>
                         </div>
-
                         <div class="form-group">
                             <div class="col-sm-12">
                                 <br />
@@ -75,16 +71,12 @@
 
                             </div>
                         </div>
-
                         <div class="form-group">
                             <div class="col-sm-12 text-right">
                                 <input type="submit" name="submit" value="Odeslat" class="btn">
                             </div>
                         </div>
                     </div>
-
-                    <p></p>
-
                 </form>
             </div>
         </div>

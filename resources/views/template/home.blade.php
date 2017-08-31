@@ -1,15 +1,14 @@
 @extends('layout')
-
-
-
+@section('styles')
+    <link media="all" type="text/css" rel="stylesheet" href="/revolution/css/settings.css">
+    <link media="all" type="text/css" rel="stylesheet" href="/revolution/css/navigation.css">
+    <link rel="stylesheet" type="text/css" href="/slick/slick-theme.css"/>
+@endsection
 @section('content')
-
     @include('partitials.slider')
-
     <h1 class="hidden">Ing. Jiří Svarovský</h1>
-
     @if($home_text)
-        <section  class="padding shadow-background home-text-mobile">
+        <section class="padding shadow-background home-text-mobile">
             <div class="container">
                 <div class="row">
                     <div class="col-sm-6 photo-hp" style="background-image:url({{ $home_text->media }});">
@@ -23,19 +22,16 @@
             </div>
         </section>
     @endif
-
     @if($categories)
         <section id="categories">
             <div class="container hp-categories">
                 <div class="row">
                     @foreach($categories as $category)
-
                             <div class="col-sm-4 col-xs-6 text-center category-card" onclick="location.href='{{ route('categories.detail', $category->href) }}'">
                                 <h2>{{ $category->name }}</h2>
                                 <p>{{ $category->perex }}</p>
                                 <a href="{{ route('categories.detail', $category->href) }}" class="category-btn">Více</a>
                             </div>
-
                     @endforeach
                 </div>
                 <div class="row">
@@ -46,7 +42,6 @@
             </div>
         </section>
     @endif
-
     @if($home_text)
         <section id="home-text" class="padding shadow-background home-text-desktop">
             <div class="container">
@@ -62,7 +57,6 @@
             </div>
         </section>
     @endif
-
     @if($references)
         <section id="references" class="padding">
             <div class="container">
@@ -82,7 +76,6 @@
             </div>
         </section>
     @endif
-
     @if($articles)
         <section id="articles" class="padding shadow-background homepage">
             <div class="container">
@@ -104,7 +97,6 @@
             </div>
         </section>
     @endif
-
     @if($partners)
         <?php $a = 0; ?>
         <section id="partners" >
@@ -131,11 +123,8 @@
                 </div>
             </div>
         </section>
-
     @endif
-
 @endsection
-
 @section('scripts')
     <script type="text/javascript">
         jQuery(document).ready(function() {
@@ -150,7 +139,7 @@
                     arrows: {enable: true}
                 },
                 gridwidth: 1920,
-                gridheight: [800, 800, 1100, 1800],
+                gridheight: [800, 800, 1100, 1800]
             }).show(500);
         });
     </script>
